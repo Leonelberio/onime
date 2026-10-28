@@ -14,7 +14,7 @@ import { endSession, homeFor, startSession } from "../auth/session";
 import { isCompanyCurrency } from "../currencies";
 import { slugify, uniqueSlug } from "../slug";
 import { trialEndFrom } from "../subscription";
-import { emptyToNull, fail, guarded, parseForm, type ActionState } from "./shared";
+import { emptyToNull, fail, guarded, parseForm, success, type ActionState } from "./shared";
 
 async function clientKey() {
   const h = await headers();
@@ -91,7 +91,9 @@ export async function signUp(_prev: ActionState, fd: FormData): Promise<ActionSt
       });
     }
     await startSession(user.id);
-    redirect("/dashboard?bienvenue=1&onboarding=1");
+    // Full navigation is done on the client (see onboarding wizard) so session + boutique cookies
+    // are committed before /dashboard loads — avoids intermittent post-signup client errors.
+    return success(undefined, { redirect: "/dashboard?bienvenue=1&onboarding=1" });
   });
 }
 

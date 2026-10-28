@@ -63,11 +63,14 @@ export default async function AppLayout({ children }: { children: React.ReactNod
   const me = await requireStaff();
   const { organization, subscription: sub, viewMode, boutiques, boutique } = me;
   const label = contextLabel(me);
+  const showContextLabel = me.role !== "OWNER" || boutiques.length <= 2;
 
   const bottomNav =
     me.role === "OWNER" ? (
       <BottomNav items={OWNER_BOTTOM} more={OWNER_MORE} sheetTitle="Plus">
-        <p className="mb-2 truncate px-1 text-body-sm text-muted-foreground">{label}</p>
+        {showContextLabel ? (
+          <p className="mb-2 truncate px-1 text-body-sm text-muted-foreground">{label}</p>
+        ) : null}
         <SignOutButton />
       </BottomNav>
     ) : (
@@ -88,7 +91,9 @@ export default async function AppLayout({ children }: { children: React.ReactNod
             </button>
           </form>
         </div>
-        <p className="mb-2 truncate text-body-sm font-semibold">{label}</p>
+        {showContextLabel ? (
+          <p className="mb-2 truncate text-body-sm font-semibold">{label}</p>
+        ) : null}
         {me.role === "OWNER" && (
           <div className="mb-4">
             <BoutiqueSwitcher boutiques={boutiques} viewMode={viewMode} activeBoutiqueId={boutique?.id ?? null} />

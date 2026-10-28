@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState, useMemo, useState } from "react";
+import { useActionState, useEffect, useMemo, useState } from "react";
 import { Alert, Field } from "@/components/ui";
 import { SubmitButton } from "@/components/ui/submit-button";
 import { signUp } from "@/lib/actions/auth";
@@ -22,6 +22,11 @@ export function OnboardingWizard() {
   const [localError, setLocalError] = useState<string | null>(null);
 
   const [state, formAction] = useActionState(signUp, undefined);
+
+  useEffect(() => {
+    const to = state?.data?.redirect;
+    if (state?.ok && to) window.location.assign(to);
+  }, [state]);
 
   const recap = useMemo(
     () => ({

@@ -3,6 +3,13 @@
 import { CONSOLIDATED_BOUTIQUE } from "@/lib/auth/boutique-constants";
 import type { Boutique } from "@prisma/client";
 import { setActiveBoutiqueAndRedirect } from "@/lib/actions/boutique-context";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 type Props = {
   boutiques: Pick<Boutique, "id" | "name">[];
@@ -16,25 +23,26 @@ export function BoutiqueSwitcher({ boutiques, viewMode, activeBoutiqueId }: Prop
   const current =
     viewMode === "consolidated" ? CONSOLIDATED_BOUTIQUE : (activeBoutiqueId ?? CONSOLIDATED_BOUTIQUE);
 
+  function onValueChange(value: string) {
+    if (value === current) return;
+    const fd = new FormData();
+    fd.set("boutiqueId", value);
+    void setActiveBoutiqueAndRedirect(fd);
+  }
+
   return (
-    <form action={setActiveBoutiqueAndRedirect} className="w-full max-w-xs">
-      <label className="sr-only" htmlFor="boutique-switcher">
-        Boutique active
-      </label>
-      <select
-        id="boutique-switcher"
-        name="boutiqueId"
-        defaultValue={current}
-        className="onime-input w-full text-body-sm"
-        onChange={(e) => e.currentTarget.form?.requestSubmit()}
-      >
-        <option value={CONSOLIDATED_BOUTIQUE}>Vue consolidée (toutes)</option>
+    <Select value={current} onValueChange={onValueChange}>
+      <SelectTrigger id="boutique-switcher" aria-label="Boutique active" className="w-full max-w-xs">
+        <SelectValue placeholder="Choisir une boutique" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value={CONSOLIDATED_BOUTIQUE}>Vue consolidée (toutes)</SelectItem>
         {boutiques.map((b) => (
-          <option key={b.id} value={b.id}>
+          <SelectItem key={b.id} value={b.id}>
             {b.name}
-          </option>
+          </SelectItem>
         ))}
-      </select>
-    </form>
+      </SelectContent>
+    </Select>
   );
 }
