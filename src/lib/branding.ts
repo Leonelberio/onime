@@ -7,6 +7,9 @@ export const APP_TAGLINE = "Stock, ventes et pointage multi-boutiques";
 
 export const CLIENT_LOGO_PATH = "/brand/onime-logo.png";
 
+/** Icône carrée (favicon / PWA / onglet navigateur). */
+export const CLIENT_FAVICON_PATH = "/brand/onime-favicon.png";
+
 /** Vert néon du logo ONIME */
 export const ONIME_BRAND_COLOR = "#44D600";
 

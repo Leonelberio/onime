@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { APP_TAGLINE, CLIENT_LEGAL_NAME, CLIENT_LOGO_PATH, CLIENT_NAME, ONIME_BRAND_COLOR } from "@/lib/branding";
+import { APP_TAGLINE, CLIENT_FAVICON_PATH, CLIENT_LEGAL_NAME, CLIENT_NAME, ONIME_BRAND_COLOR } from "@/lib/branding";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
@@ -16,13 +16,13 @@ export default function manifest(): MetadataRoute.Manifest {
     categories: ["business", "productivity"],
     icons: [
       {
-        src: CLIENT_LOGO_PATH,
+        src: CLIENT_FAVICON_PATH,
         sizes: "512x512",
         type: "image/png",
         purpose: "any",
       },
       {
-        src: CLIENT_LOGO_PATH,
+        src: CLIENT_FAVICON_PATH,
         sizes: "512x512",
         type: "image/png",
         purpose: "maskable",

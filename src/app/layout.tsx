@@ -8,7 +8,13 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
 const schibsted = Schibsted_Grotesk({ subsets: ["latin"], variable: "--font-schibsted", display: "swap", weight: ["600", "700"] });
 
-import { APP_TAGLINE, CLIENT_LEGAL_NAME, CLIENT_LOGO_PATH, CLIENT_NAME, ONIME_BRAND_COLOR } from "@/lib/branding";
+import {
+  APP_TAGLINE,
+  CLIENT_FAVICON_PATH,
+  CLIENT_LEGAL_NAME,
+  CLIENT_NAME,
+  ONIME_BRAND_COLOR,
+} from "@/lib/branding";
 
 export const metadata: Metadata = {
   title: { default: `${CLIENT_NAME} · ${APP_TAGLINE}`, template: `%s · ${CLIENT_NAME}` },
@@ -24,8 +30,8 @@ export const metadata: Metadata = {
     telephone: false,
   },
   icons: {
-    icon: [{ url: CLIENT_LOGO_PATH, type: "image/png" }],
-    apple: [{ url: CLIENT_LOGO_PATH, type: "image/png" }],
+    icon: [{ url: CLIENT_FAVICON_PATH, type: "image/png" }],
+    apple: [{ url: CLIENT_FAVICON_PATH, type: "image/png" }],
   },
 };
 
