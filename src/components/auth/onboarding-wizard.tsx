@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useActionState, useMemo, useState } from "react";
 import { Alert, Field } from "@/components/ui";
 import { SubmitButton } from "@/components/ui/submit-button";
@@ -215,13 +214,6 @@ export function OnboardingWizard() {
           )}
         </div>
       </form>
-
-      <p className="text-center text-body-sm text-muted-foreground">
-        Déjà inscrit ?{" "}
-        <Link href="/connexion" className="onime-link">
-          Se connecter
-        </Link>
-      </p>
     </div>
   );
 }
