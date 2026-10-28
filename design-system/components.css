@@ -1,0 +1,259 @@
+/*
+ * ONIME design system - components.css (CSS pur, sans dépendance Tailwind)
+ * Button · Icon button · Badge · Tag · Card · Input/Select/Textarea · Grain
+ * Dépend de tokens.css. Zéro ombre, transitions 150ms ease-out ciblées (jamais `all`),
+ * press scale(.96 boutons · .92 icônes · .98 cartes · .99 liens), focus visible AA.
+ * Accent de domaine : variantes `--accent` suivent <html data-domain="…">.
+ */
+
+/* ============ BUTTON - 7 états : default · hover · active(press) · focus · selected · disabled · loading · error ============ */
+.onime-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 10px 20px;
+  font-family: var(--onime-font-body);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: rgb(var(--onime-foreground-rgb));
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--onime-radius-md);
+  transition:
+    background-color var(--onime-duration-fast) var(--onime-ease),
+    border-color var(--onime-duration-fast) var(--onime-ease),
+    color var(--onime-duration-fast) var(--onime-ease),
+    opacity var(--onime-duration-fast) var(--onime-ease),
+    transform var(--onime-duration-fast) var(--onime-ease);
+}
+.onime-btn:active:not(:disabled):not([aria-disabled="true"]) { transform: scale(var(--onime-press-button)); }
+.onime-btn:focus-visible { outline: 2px solid var(--onime-focus); outline-offset: 2px; }
+.onime-btn:disabled,
+.onime-btn[aria-disabled="true"] { cursor: not-allowed; opacity: 0.5; transform: none; }
+.onime-btn[aria-busy="true"] { pointer-events: none; }
+.onime-btn[aria-busy="true"]::after {
+  width: 14px;
+  height: 14px;
+  content: "";
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: onime-spin 0.6s linear infinite;
+}
+@keyframes onime-spin { to { transform: rotate(360deg); } }
+
+/* Primaire : fond jaune + texte INK (jamais blanc) */
+.onime-btn--primary { color: rgb(var(--onime-on-primary-rgb)); background-color: var(--onime-primary); }
+.onime-btn--primary:hover:not(:disabled) { background-color: var(--onime-primary-hover); }
+.onime-btn--primary:active:not(:disabled) { background-color: var(--onime-primary-active); }
+.onime-btn--primary.is-selected,
+.onime-btn--primary[aria-pressed="true"] { color: var(--onime-primary-text); background-color: var(--onime-primary-soft); }
+.onime-btn--primary.is-error,
+.onime-btn--error { color: rgb(var(--onime-on-semantic-rgb)); background-color: var(--onime-error); }
+.onime-btn--error:hover:not(:disabled) { background-color: var(--onime-error-text); }
+/* Dark : l'erreur #dc2626 + blanc = 4.83:1 ✓ ; survol = error-text clair → on garde texte ink pour rester AA */
+:root[data-theme="dark"] .onime-btn--error:hover:not(:disabled),
+:root.dark .onime-btn--error:hover:not(:disabled) { color: #0a0a0a; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]):not(.light) .onime-btn--error:hover:not(:disabled) { color: #0a0a0a; }
+}
+
+/* Accent de domaine : fond accent-strong + texte accent-fg (AA par construction) */
+.onime-btn--accent { color: var(--onime-accent-fg); background-color: var(--onime-accent-strong); }
+.onime-btn--accent:hover:not(:disabled) { background-color: var(--onime-accent-strong-hover); }
+
+/* Secondaire : surface linen + bordure diluée */
+.onime-btn--secondary {
+  color: rgb(var(--onime-foreground-rgb));
+  background-color: var(--onime-surface);
+  border-color: var(--onime-border);
+}
+.onime-btn--secondary:hover:not(:disabled) { background-color: var(--onime-canvas); border-color: var(--onime-border-hover); }
+.onime-btn--secondary.is-selected,
+.onime-btn--secondary[aria-pressed="true"] { color: var(--onime-accent-text); background-color: var(--onime-accent-soft); border-color: transparent; }
+
+/* Tertiaire (textuel) */
+.onime-btn--tertiary { min-height: 36px; padding: 8px 12px; color: rgb(var(--onime-muted-foreground-rgb)); border-radius: var(--onime-radius-sm); }
+.onime-btn--tertiary:hover:not(:disabled) {
+  color: rgb(var(--onime-foreground-rgb));
+  text-decoration: underline;
+  text-decoration-color: var(--onime-primary);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+.onime-btn--tertiary.is-selected,
+.onime-btn--tertiary[aria-pressed="true"] { color: var(--onime-accent-text); }
+
+/* Icône (36×36, press .92) */
+.onime-btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  color: rgb(var(--onime-muted-foreground-rgb));
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  border-radius: var(--onime-radius-sm);
+  transition:
+    background-color var(--onime-duration-fast) var(--onime-ease),
+    color var(--onime-duration-fast) var(--onime-ease),
+    transform var(--onime-duration-fast) var(--onime-ease);
+}
+.onime-btn-icon:hover:not(:disabled) { color: rgb(var(--onime-foreground-rgb)); background-color: var(--onime-surface); }
+.onime-btn-icon:active:not(:disabled) { transform: scale(var(--onime-press-icon)); }
+.onime-btn-icon:focus-visible { outline: 2px solid var(--onime-focus); outline-offset: 2px; }
+.onime-btn-icon.is-selected,
+.onime-btn-icon[aria-pressed="true"] { color: var(--onime-accent-text); background-color: var(--onime-accent-soft); }
+.onime-btn-icon:disabled { cursor: not-allowed; opacity: 0.4; }
+
+/* Lien (press .99) - accent-text AA + soulignement */
+.onime-link {
+  color: var(--onime-accent-text);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color var(--onime-duration-fast) var(--onime-ease), transform var(--onime-duration-fast) var(--onime-ease);
+}
+.onime-link:hover { text-decoration-color: var(--onime-primary); text-decoration-thickness: 2px; }
+.onime-link:active { transform: scale(var(--onime-press-link)); }
+
+/* ============ BADGE & TAG (sans bordure, teinte douce, AA par construction, pas d'uppercase) ============ */
+.onime-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  height: 24px;
+  padding: 0 10px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  color: rgb(var(--onime-muted-foreground-rgb));
+  background: var(--onime-surface);
+  border: 0;
+  border-radius: var(--onime-radius-sm);
+}
+.onime-badge--primary { color: var(--onime-primary-text); background: var(--onime-primary-soft); }
+.onime-badge--accent { color: var(--onime-accent-text); background: var(--onime-accent-soft); }
+.onime-badge--success { color: var(--onime-success-text); background: var(--onime-success-soft); }
+.onime-badge--error { color: var(--onime-error-text); background: var(--onime-error-soft); }
+.onime-badge--caution { color: var(--onime-caution-text); background: var(--onime-caution-soft); }
+.onime-badge--info { color: var(--onime-info-text); background: var(--onime-info-soft); }
+.onime-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+  padding: 0 12px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+  color: rgb(var(--onime-muted-foreground-rgb));
+  background: var(--onime-surface);
+  border: 0;
+  border-radius: var(--onime-radius-sm);
+}
+
+/* ============ CARD (tonal layering : raised sur canvas, bordure diluée, zéro ombre) ============ */
+.onime-card {
+  padding: 24px;
+  color: rgb(var(--onime-foreground-rgb));
+  background: var(--onime-raised);
+  border: 1px solid var(--onime-border);
+  border-radius: var(--onime-radius-card);
+  box-shadow: none;
+  transition:
+    border-color var(--onime-duration-fast) var(--onime-ease),
+    background-color var(--onime-duration-fast) var(--onime-ease),
+    transform var(--onime-duration-fast) var(--onime-ease);
+}
+.onime-card:hover { border-color: var(--onime-border-hover); }
+.onime-card--flat { background: var(--onime-surface); border-color: transparent; }
+.onime-card--interactive { cursor: pointer; text-align: left; font: inherit; }
+.onime-card--interactive:active { transform: scale(var(--onime-press-card)); }
+.onime-card--interactive:focus-visible { outline: 2px solid var(--onime-focus); outline-offset: 2px; }
+.onime-card__title { font-family: var(--onime-font-body); font-size: 1.375rem; font-weight: 600; line-height: 1.25; letter-spacing: -0.01em; }
+.onime-card__meta { font-size: 0.875rem; line-height: 1.43; color: rgb(var(--onime-muted-foreground-rgb)); }
+
+/* ============ INPUT / SELECT / TEXTAREA - fond gris clair (surface), focus inchangé ============ */
+.onime-input,
+.onime-select,
+.onime-textarea,
+input.onime-input,
+textarea.onime-textarea,
+select.onime-select {
+  width: 100%;
+  min-height: 40px;
+  padding: 8px 12px;
+  font-family: var(--onime-font-body);
+  font-size: 14px;
+  line-height: 1.43;
+  color: rgb(var(--onime-foreground-rgb));
+  background-color: var(--onime-surface);
+  border: none;
+  border-radius: var(--onime-radius-sm);
+  transition: background-color var(--onime-duration-fast) var(--onime-ease);
+}
+.onime-textarea { min-height: 96px; resize: vertical; }
+.onime-input::placeholder,
+.onime-textarea::placeholder { color: rgb(var(--onime-subtle-rgb)); opacity: 1; }
+.onime-input:hover:not(:disabled),
+.onime-select:hover:not(:disabled),
+.onime-textarea:hover:not(:disabled) { background-color: var(--onime-hover); }
+.onime-input:focus-visible,
+.onime-select:focus-visible,
+.onime-textarea:focus-visible {
+  outline: 2px solid var(--onime-focus);
+  outline-offset: 1px;
+  background-color: var(--onime-hover);
+}
+/* Auth / cartes : champs natifs sans classe explicite */
+.onime-card input:not([type="hidden"]):not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]),
+.onime-card textarea,
+.onime-card select,
+.auth-shell-panel input:not([type="hidden"]):not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]),
+.auth-shell-panel textarea,
+.auth-shell-panel select {
+  background-color: var(--onime-surface);
+}
+.onime-input[aria-invalid="true"],
+.onime-select[aria-invalid="true"],
+.onime-textarea[aria-invalid="true"] {
+  outline: 2px solid var(--onime-error-text);
+  outline-offset: 1px;
+}
+.onime-input:disabled,
+.onime-select:disabled,
+.onime-textarea:disabled { cursor: not-allowed; background-color: var(--onime-surface); opacity: 0.6; }
+.onime-label { display: block; margin-bottom: 6px; font-size: 13px; font-weight: 500; color: rgb(var(--onime-foreground-rgb)); }
+.onime-help { margin-top: 6px; font-size: 12px; line-height: 1.5; color: rgb(var(--onime-muted-foreground-rgb)); }
+.onime-help--error { color: var(--onime-error-text); }
+
+/* ============ GRAIN - texture signature (~0.9 %) ============ */
+/* Sur <body> (le fond doit être posé sur body/html) : le bruit est derrière tout le contenu,
+   donc jamais sur les cartes, textes, CTA (règle charte). */
+.onime-grain::before {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  content: "";
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.015'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  opacity: var(--onime-grain);
+}
+@media print { .onime-grain::before { display: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .onime-btn, .onime-btn-icon, .onime-card, .onime-link { transition: none; }
+  .onime-btn:active, .onime-btn-icon:active, .onime-card--interactive:active { transform: none; }
+  .onime-btn[aria-busy="true"]::after { animation-duration: 1.6s; }
+}

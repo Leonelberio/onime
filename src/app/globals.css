@@ -1,0 +1,87 @@
+@import "../../design-system/tokens.css";
+@import "../../design-system/components.css";
+@import "../../design-system/marketing.css";
+@import "../styles/menu-domain.css";
+@import "../styles/client-menu.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  html, body { min-height: 100dvh; height: 100%; }
+  body { width: 100%; }
+  img { font-style: italic; }
+  /* Grille sans colonnes explicites : une colonne qui peut rétrécir (évite le débordement horizontal sur mobile) */
+  .grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+@layer components {
+  /* Surfaces de page */
+  .page-title { @apply font-display text-2xl font-bold tracking-tight text-foreground sm:text-h2; }
+  .card-pad { @apply p-4 sm:p-6; }
+  .table-head { @apply text-label font-semibold text-muted-foreground; }
+  .row-hover { @apply transition-colors hover:bg-accent; }
+  .chip { @apply inline-flex items-center gap-1.5 rounded-pill border border-border bg-surface px-3 py-1.5 text-body-sm font-medium text-foreground transition-colors; }
+  .chip[aria-pressed="true"], .chip[aria-selected="true"], .chip[aria-current="true"] { @apply bg-primary-soft text-primary-text border-transparent; }
+  .skeleton { @apply animate-pulse rounded-card bg-surface; }
+}
+
+@keyframes onime-pop { from { transform: scale(0.96); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.pop-in { animation: onime-pop 150ms ease-out both; }
+@keyframes onime-slide-up { from { transform: translateY(12px); opacity: 0; } to { transform: none; opacity: 1; } }
+.slide-up { animation: onime-slide-up 200ms ease-out both; }
+@keyframes new-order { 0% { background-color: var(--onime-primary-soft); } 100% { background-color: transparent; } }
+.flash-new { animation: new-order 2.4s ease-out both; }
+
+/* ===== Parcours client (menu public) : surfaces et boutons de marque, tous issus des tokens ===== */
+:root {
+  /* Jaune de marque ONIME (charte) - CTA du bandeau héro et pastilles de panier ; texte ink dessus (≥ 12:1) */
+  --m-yellow: #ffc400;
+  --m-on-yellow: #0f172a;
+  --m-hero: var(--onime-foreground);
+  --m-hero-fg: var(--onime-canvas);
+  --m-hero-ring: rgb(var(--onime-foreground-rgb) / 0.12);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]):not(.light) {
+    --m-hero: var(--onime-raised);
+    --m-hero-fg: var(--onime-foreground);
+    --m-hero-ring: rgb(var(--onime-foreground-rgb) / 0.12);
+  }
+}
+@layer components {
+  .m-brand { background-color: var(--brand); color: var(--brand-fg); }
+  .m-brand-text { color: var(--brand-text); }
+  .m-yellow { background-color: var(--m-yellow); color: var(--m-on-yellow); }
+  .m-ink { background-color: rgb(var(--onime-foreground-rgb)); color: rgb(var(--onime-canvas-rgb)); }
+  .m-hero { background-color: var(--m-hero); color: var(--m-hero-fg); border: 1px solid var(--onime-border); }
+  .m-hero :focus-visible { outline-color: var(--m-yellow); }
+  .m-ink:focus-visible, .m-brand:focus-visible, .m-yellow:focus-visible { outline: 2px solid var(--onime-focus); outline-offset: 2px; }
+}
+
+@media print {
+  .no-print { display: none !important; }
+}
+
+/* Menu public : couleurs du Company (variables posées par page, contraste calculé côté serveur) */
+@layer components {
+  .rbtn {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-button px-5 py-2.5 text-body-sm font-semibold transition-colors press;
+    background-color: var(--brand);
+    color: var(--brand-fg);
+  }
+  .rbtn:hover:not(:disabled) { background-color: var(--brand-hover); }
+  .rbtn:disabled { @apply cursor-not-allowed opacity-50; }
+  .rbtn:focus-visible { outline: 2px solid var(--onime-focus); outline-offset: 2px; }
+  .rtext { color: var(--brand-text); }
+  .rchip[aria-current="true"] { background-color: var(--brand); color: var(--brand-fg); border-color: transparent; }
+}
+
+:root {
+  /* Accent Company par défaut = rouge Pinterest (surchargé par .rmenu côté menu public) */
+  --brand: var(--onime-primary);
+  --brand-fg: var(--onime-on-primary);
+  --brand-hover: var(--onime-primary-hover);
+  --brand-text: var(--onime-primary-text);
+}

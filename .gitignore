@@ -1,0 +1,16 @@
+node_modules/
+.next/
+out/
+.env
+.env.*
+!.env.example
+*.tsbuildinfo
+next-env.d.ts
+public/uploads/
+.uploads/
+test-results/
+playwright-report/
+
+# Serwist (generated at build)
+public/sw*
+public/swe-worker*

@@ -1,0 +1,605 @@
+/*
+ * ONIME design system - tokens.css
+ * GÉNÉRÉ par design-system/scripts/build-tokens.mjs depuis tokens.mjs - NE PAS ÉDITER À LA MAIN.
+ *
+ * Thème : suit le système (prefers-color-scheme). Forçage possible :
+ *   <html data-theme="light|dark"> ou classes .light / .dark (compat next-themes attribute="class").
+ * Accent de domaine : <html data-domain="sante|transport|rh|ia"> (aliases : gym, transit, pme).
+ *   → expose --accent, --accent-text, --accent-strong, --accent-strong-hover, --accent-fg, --accent-soft.
+ */
+
+:root {
+  color-scheme: light dark;
+
+  /* ---- Thème clair (défaut) ---- */
+  --onime-canvas: #f8f7f4;
+  --onime-canvas-rgb: 248 247 244;
+  --onime-surface: #f0efec;
+  --onime-surface-rgb: 240 239 236;
+  --onime-raised: #ffffff;
+  --onime-raised-rgb: 255 255 255;
+  --onime-hover: #eceae6;
+  --onime-hover-rgb: 236 234 230;
+  --onime-foreground: #0f172a;
+  --onime-foreground-rgb: 15 23 42;
+  --onime-muted-foreground: #5c5a57;
+  --onime-muted-foreground-rgb: 92 90 87;
+  --onime-subtle: #6b6966;
+  --onime-subtle-rgb: 107 105 102;
+  --onime-faint: #94a3b8;
+  --onime-faint-rgb: 148 163 184;
+  --onime-primary: #ffc400;
+  --onime-primary-rgb: 255 196 0;
+  --onime-primary-hover: #e6b000;
+  --onime-primary-hover-rgb: 230 176 0;
+  --onime-primary-active: #cc9e00;
+  --onime-primary-active-rgb: 204 158 0;
+  --onime-primary-text: #7a5900;
+  --onime-primary-text-rgb: 122 89 0;
+  --onime-primary-soft: rgba(255, 196, 0, 0.16);
+  --onime-on-primary: #0f172a;
+  --onime-on-primary-rgb: 15 23 42;
+  --onime-border: rgba(0, 0, 0, 0.06);
+  --onime-border-hover: rgba(0, 0, 0, 0.12);
+  --onime-field-border: #85878f;
+  --onime-field-border-rgb: 133 135 143;
+  --onime-focus: #0f172a;
+  --onime-focus-rgb: 15 23 42;
+  --onime-success: #16a34a;
+  --onime-success-rgb: 22 163 74;
+  --onime-success-text: #166534;
+  --onime-success-text-rgb: 22 101 52;
+  --onime-success-soft: rgba(22, 163, 74, 0.12);
+  --onime-error: #dc2626;
+  --onime-error-rgb: 220 38 38;
+  --onime-error-text: #b91c1c;
+  --onime-error-text-rgb: 185 28 28;
+  --onime-error-soft: rgba(220, 38, 38, 0.10);
+  --onime-caution: #d97706;
+  --onime-caution-rgb: 217 119 6;
+  --onime-caution-text: #92400e;
+  --onime-caution-text-rgb: 146 64 14;
+  --onime-caution-soft: rgba(217, 119, 6, 0.12);
+  --onime-info: #2563eb;
+  --onime-info-rgb: 37 99 235;
+  --onime-info-text: #1d4ed8;
+  --onime-info-text-rgb: 29 78 216;
+  --onime-info-soft: rgba(37, 99, 235, 0.10);
+  --onime-on-semantic: #ffffff;
+  --onime-on-semantic-rgb: 255 255 255;
+  --onime-chart-2: #1d4ed8;
+  --onime-chart-2-rgb: 29 78 216;
+  --onime-chart-3: #15803d;
+  --onime-chart-3-rgb: 21 128 61;
+  --onime-chart-4: #b45309;
+  --onime-chart-4-rgb: 180 83 9;
+  --onime-chart-5: #5c5a57;
+  --onime-chart-5-rgb: 92 90 87;
+
+  /* ---- Statiques ---- */
+  --onime-font-display: var(--font-schibsted, "Schibsted Grotesk"), "Schibsted Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --onime-font-body: var(--font-inter, "Inter"), "Inter", ui-sans-serif, system-ui, sans-serif;
+  --onime-font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --onime-radius-card: 14px;
+  --onime-radius-md: 12px;
+  --onime-radius-sm: 8px;
+  --onime-radius-pill: 999px;
+  --onime-space-xs: 4px;
+  --onime-space-sm: 8px;
+  --onime-space-md: 16px;
+  --onime-space-lg: 24px;
+  --onime-space-xl: 32px;
+  --onime-space-section: 80px;
+  --onime-duration-fast: 150ms;
+  --onime-duration-page: 300ms;
+  --onime-ease: ease-out;
+  --onime-press-button: 0.96;
+  --onime-press-icon: 0.92;
+  --onime-press-card: 0.98;
+  --onime-press-link: 0.99;
+  --onime-grain: 0.6;
+
+  /* ---- Accent de domaine par défaut (jaune de marque) ---- */
+  --onime-accent: #ffc400;
+  --onime-accent-rgb: 255 196 0;
+  --onime-accent-text: #7a5900;
+  --onime-accent-text-rgb: 122 89 0;
+  --onime-accent-strong: #ffc400;
+  --onime-accent-strong-rgb: 255 196 0;
+  --onime-accent-strong-hover: #e6b000;
+  --onime-accent-strong-hover-rgb: 230 176 0;
+  --onime-accent-fg: #0f172a;
+  --onime-accent-fg-rgb: 15 23 42;
+  --onime-accent-soft: rgba(255, 196, 0, 0.16);
+  --accent: var(--onime-accent);
+  --accent-text: var(--onime-accent-text);
+  --accent-strong: var(--onime-accent-strong);
+  --accent-strong-hover: var(--onime-accent-strong-hover);
+  --accent-fg: var(--onime-accent-fg);
+  --accent-soft: var(--onime-accent-soft);
+
+  /* ---- Alias courts + noms de la charte ---- */
+  --cream: var(--onime-canvas);
+  --linen: var(--onime-surface);
+  --pearl: var(--onime-raised);
+  --ink: var(--onime-foreground);
+  --graphite: var(--onime-muted-foreground);
+  --slate: var(--onime-faint);
+  --primary: var(--onime-primary);
+  --primary-deep: var(--onime-primary-hover);
+  --primary-active: var(--onime-primary-active);
+  --primary-tint: var(--onime-primary-soft);
+  --primary-muted: var(--onime-primary-text);
+  --border: var(--onime-border);
+  --border-hover: var(--onime-border-hover);
+  --success: var(--onime-success);
+  --error: var(--onime-error);
+  --caution: var(--onime-caution);
+  --info: var(--onime-info);
+}
+
+:root[data-theme="light"],
+:root.light {
+  color-scheme: light;
+}
+
+/* ---- Thème sombre : système ---- */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]):not(.light) {
+    --onime-canvas: #0a0a0a;
+    --onime-canvas-rgb: 10 10 10;
+    --onime-surface: #141414;
+    --onime-surface-rgb: 20 20 20;
+    --onime-raised: #1a1a1a;
+    --onime-raised-rgb: 26 26 26;
+    --onime-hover: #1f1f1f;
+    --onime-hover-rgb: 31 31 31;
+    --onime-foreground: #f5f0eb;
+    --onime-foreground-rgb: 245 240 235;
+    --onime-muted-foreground: #a4a8b4;
+    --onime-muted-foreground-rgb: 164 168 180;
+    --onime-subtle: #8b8f9a;
+    --onime-subtle-rgb: 139 143 154;
+    --onime-faint: #b0b0b0;
+    --onime-faint-rgb: 176 176 176;
+    --onime-primary: #ffc400;
+    --onime-primary-rgb: 255 196 0;
+    --onime-primary-hover: #e6b000;
+    --onime-primary-hover-rgb: 230 176 0;
+    --onime-primary-active: #cc9e00;
+    --onime-primary-active-rgb: 204 158 0;
+    --onime-primary-text: #ffc400;
+    --onime-primary-text-rgb: 255 196 0;
+    --onime-primary-soft: rgba(255, 196, 0, 0.14);
+    --onime-on-primary: #0f172a;
+    --onime-on-primary-rgb: 15 23 42;
+    --onime-border: rgba(255, 255, 255, 0.06);
+    --onime-border-hover: rgba(255, 255, 255, 0.12);
+    --onime-field-border: #7a7e8a;
+    --onime-field-border-rgb: 122 126 138;
+    --onime-focus: #ffc400;
+    --onime-focus-rgb: 255 196 0;
+    --onime-success: #16a34a;
+    --onime-success-rgb: 22 163 74;
+    --onime-success-text: #4ade80;
+    --onime-success-text-rgb: 74 222 128;
+    --onime-success-soft: rgba(74, 222, 128, 0.14);
+    --onime-error: #dc2626;
+    --onime-error-rgb: 220 38 38;
+    --onime-error-text: #f87171;
+    --onime-error-text-rgb: 248 113 113;
+    --onime-error-soft: rgba(248, 113, 113, 0.14);
+    --onime-caution: #d97706;
+    --onime-caution-rgb: 217 119 6;
+    --onime-caution-text: #fbbf24;
+    --onime-caution-text-rgb: 251 191 36;
+    --onime-caution-soft: rgba(251, 191, 36, 0.14);
+    --onime-info: #2563eb;
+    --onime-info-rgb: 37 99 235;
+    --onime-info-text: #60a5fa;
+    --onime-info-text-rgb: 96 165 250;
+    --onime-info-soft: rgba(96, 165, 250, 0.14);
+    --onime-on-semantic: #ffffff;
+    --onime-on-semantic-rgb: 255 255 255;
+    --onime-chart-2: #60a5fa;
+    --onime-chart-2-rgb: 96 165 250;
+    --onime-chart-3: #4ade80;
+    --onime-chart-3-rgb: 74 222 128;
+    --onime-chart-4: #fbbf24;
+    --onime-chart-4-rgb: 251 191 36;
+    --onime-chart-5: #a4a8b4;
+    --onime-chart-5-rgb: 164 168 180;
+    --onime-accent: #ffc400;
+    --onime-accent-rgb: 255 196 0;
+    --onime-accent-text: #ffc400;
+    --onime-accent-text-rgb: 255 196 0;
+    --onime-accent-strong: #ffc400;
+    --onime-accent-strong-rgb: 255 196 0;
+    --onime-accent-strong-hover: #e6b000;
+    --onime-accent-strong-hover-rgb: 230 176 0;
+    --onime-accent-fg: #0f172a;
+    --onime-accent-fg-rgb: 15 23 42;
+    --onime-accent-soft: rgba(255, 196, 0, 0.14);
+    --accent: var(--onime-accent);
+    --accent-text: var(--onime-accent-text);
+    --accent-strong: var(--onime-accent-strong);
+    --accent-strong-hover: var(--onime-accent-strong-hover);
+    --accent-fg: var(--onime-accent-fg);
+    --accent-soft: var(--onime-accent-soft);
+  }
+}
+
+/* ---- Thème sombre : forcé ---- */
+:root[data-theme="dark"],
+:root.dark {
+  color-scheme: dark;
+  --onime-canvas: #0a0a0a;
+  --onime-canvas-rgb: 10 10 10;
+  --onime-surface: #141414;
+  --onime-surface-rgb: 20 20 20;
+  --onime-raised: #1a1a1a;
+  --onime-raised-rgb: 26 26 26;
+  --onime-hover: #1f1f1f;
+  --onime-hover-rgb: 31 31 31;
+  --onime-foreground: #f5f0eb;
+  --onime-foreground-rgb: 245 240 235;
+  --onime-muted-foreground: #a4a8b4;
+  --onime-muted-foreground-rgb: 164 168 180;
+  --onime-subtle: #8b8f9a;
+  --onime-subtle-rgb: 139 143 154;
+  --onime-faint: #b0b0b0;
+  --onime-faint-rgb: 176 176 176;
+  --onime-primary: #ffc400;
+  --onime-primary-rgb: 255 196 0;
+  --onime-primary-hover: #e6b000;
+  --onime-primary-hover-rgb: 230 176 0;
+  --onime-primary-active: #cc9e00;
+  --onime-primary-active-rgb: 204 158 0;
+  --onime-primary-text: #ffc400;
+  --onime-primary-text-rgb: 255 196 0;
+  --onime-primary-soft: rgba(255, 196, 0, 0.14);
+  --onime-on-primary: #0f172a;
+  --onime-on-primary-rgb: 15 23 42;
+  --onime-border: rgba(255, 255, 255, 0.06);
+  --onime-border-hover: rgba(255, 255, 255, 0.12);
+  --onime-field-border: #7a7e8a;
+  --onime-field-border-rgb: 122 126 138;
+  --onime-focus: #ffc400;
+  --onime-focus-rgb: 255 196 0;
+  --onime-success: #16a34a;
+  --onime-success-rgb: 22 163 74;
+  --onime-success-text: #4ade80;
+  --onime-success-text-rgb: 74 222 128;
+  --onime-success-soft: rgba(74, 222, 128, 0.14);
+  --onime-error: #dc2626;
+  --onime-error-rgb: 220 38 38;
+  --onime-error-text: #f87171;
+  --onime-error-text-rgb: 248 113 113;
+  --onime-error-soft: rgba(248, 113, 113, 0.14);
+  --onime-caution: #d97706;
+  --onime-caution-rgb: 217 119 6;
+  --onime-caution-text: #fbbf24;
+  --onime-caution-text-rgb: 251 191 36;
+  --onime-caution-soft: rgba(251, 191, 36, 0.14);
+  --onime-info: #2563eb;
+  --onime-info-rgb: 37 99 235;
+  --onime-info-text: #60a5fa;
+  --onime-info-text-rgb: 96 165 250;
+  --onime-info-soft: rgba(96, 165, 250, 0.14);
+  --onime-on-semantic: #ffffff;
+  --onime-on-semantic-rgb: 255 255 255;
+  --onime-chart-2: #60a5fa;
+  --onime-chart-2-rgb: 96 165 250;
+  --onime-chart-3: #4ade80;
+  --onime-chart-3-rgb: 74 222 128;
+  --onime-chart-4: #fbbf24;
+  --onime-chart-4-rgb: 251 191 36;
+  --onime-chart-5: #a4a8b4;
+  --onime-chart-5-rgb: 164 168 180;
+  --onime-accent: #ffc400;
+  --onime-accent-rgb: 255 196 0;
+  --onime-accent-text: #ffc400;
+  --onime-accent-text-rgb: 255 196 0;
+  --onime-accent-strong: #ffc400;
+  --onime-accent-strong-rgb: 255 196 0;
+  --onime-accent-strong-hover: #e6b000;
+  --onime-accent-strong-hover-rgb: 230 176 0;
+  --onime-accent-fg: #0f172a;
+  --onime-accent-fg-rgb: 15 23 42;
+  --onime-accent-soft: rgba(255, 196, 0, 0.14);
+  --accent: var(--onime-accent);
+  --accent-text: var(--onime-accent-text);
+  --accent-strong: var(--onime-accent-strong);
+  --accent-strong-hover: var(--onime-accent-strong-hover);
+  --accent-fg: var(--onime-accent-fg);
+  --accent-soft: var(--onime-accent-soft);
+}
+
+/* ---- Accents de domaine : clair ---- */
+[data-domain="sante"],
+[data-domain="gym"] {
+  --onime-accent: #ec4899;
+  --onime-accent-rgb: 236 72 153;
+  --onime-accent-text: #be185d;
+  --onime-accent-text-rgb: 190 24 93;
+  --onime-accent-strong: #be185d;
+  --onime-accent-strong-rgb: 190 24 93;
+  --onime-accent-strong-hover: #9d174d;
+  --onime-accent-strong-hover-rgb: 157 23 77;
+  --onime-accent-fg: #ffffff;
+  --onime-accent-fg-rgb: 255 255 255;
+  --onime-accent-soft: rgba(236, 72, 153, 0.12);
+  --accent: var(--onime-accent);
+  --accent-text: var(--onime-accent-text);
+  --accent-strong: var(--onime-accent-strong);
+  --accent-strong-hover: var(--onime-accent-strong-hover);
+  --accent-fg: var(--onime-accent-fg);
+  --accent-soft: var(--onime-accent-soft);
+}
+
+[data-domain="transport"],
+[data-domain="transit"] {
+  --onime-accent: #6366f1;
+  --onime-accent-rgb: 99 102 241;
+  --onime-accent-text: #4f46e5;
+  --onime-accent-text-rgb: 79 70 229;
+  --onime-accent-strong: #4f46e5;
+  --onime-accent-strong-rgb: 79 70 229;
+  --onime-accent-strong-hover: #4338ca;
+  --onime-accent-strong-hover-rgb: 67 56 202;
+  --onime-accent-fg: #ffffff;
+  --onime-accent-fg-rgb: 255 255 255;
+  --onime-accent-soft: rgba(99, 102, 241, 0.12);
+  --accent: var(--onime-accent);
+  --accent-text: var(--onime-accent-text);
+  --accent-strong: var(--onime-accent-strong);
+  --accent-strong-hover: var(--onime-accent-strong-hover);
+  --accent-fg: var(--onime-accent-fg);
+  --accent-soft: var(--onime-accent-soft);
+}
+
+[data-domain="rh"] {
+  --onime-accent: #8b5cf6;
+  --onime-accent-rgb: 139 92 246;
+  --onime-accent-text: #6d28d9;
+  --onime-accent-text-rgb: 109 40 217;
+  --onime-accent-strong: #6d28d9;
+  --onime-accent-strong-rgb: 109 40 217;
+  --onime-accent-strong-hover: #5b21b6;
+  --onime-accent-strong-hover-rgb: 91 33 182;
+  --onime-accent-fg: #ffffff;
+  --onime-accent-fg-rgb: 255 255 255;
+  --onime-accent-soft: rgba(139, 92, 246, 0.12);
+  --accent: var(--onime-accent);
+  --accent-text: var(--onime-accent-text);
+  --accent-strong: var(--onime-accent-strong);
+  --accent-strong-hover: var(--onime-accent-strong-hover);
+  --accent-fg: var(--onime-accent-fg);
+  --accent-soft: var(--onime-accent-soft);
+}
+
+[data-domain="ia"],
+[data-domain="pme"],
+[data-domain="assistant"] {
+  --onime-accent: #3b82f6;
+  --onime-accent-rgb: 59 130 246;
+  --onime-accent-text: #1d4ed8;
+  --onime-accent-text-rgb: 29 78 216;
+  --onime-accent-strong: #1d4ed8;
+  --onime-accent-strong-rgb: 29 78 216;
+  --onime-accent-strong-hover: #1e40af;
+  --onime-accent-strong-hover-rgb: 30 64 175;
+  --onime-accent-fg: #ffffff;
+  --onime-accent-fg-rgb: 255 255 255;
+  --onime-accent-soft: rgba(59, 130, 246, 0.12);
+  --accent: var(--onime-accent);
+  --accent-text: var(--onime-accent-text);
+  --accent-strong: var(--onime-accent-strong);
+  --accent-strong-hover: var(--onime-accent-strong-hover);
+  --accent-fg: var(--onime-accent-fg);
+  --accent-soft: var(--onime-accent-soft);
+}
+
+/* ---- Accents de domaine : sombre (système) ---- */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]):not(.light) [data-domain="sante"],
+  :root:not([data-theme="light"]):not(.light)[data-domain="sante"],
+  :root:not([data-theme="light"]):not(.light) [data-domain="gym"],
+  :root:not([data-theme="light"]):not(.light)[data-domain="gym"] {
+    --onime-accent: #ec4899;
+    --onime-accent-rgb: 236 72 153;
+    --onime-accent-text: #f472b6;
+    --onime-accent-text-rgb: 244 114 182;
+    --onime-accent-strong: #f472b6;
+    --onime-accent-strong-rgb: 244 114 182;
+    --onime-accent-strong-hover: #f9a8d4;
+    --onime-accent-strong-hover-rgb: 249 168 212;
+    --onime-accent-fg: #0a0a0a;
+    --onime-accent-fg-rgb: 10 10 10;
+    --onime-accent-soft: rgba(236, 72, 153, 0.16);
+    --accent: var(--onime-accent);
+    --accent-text: var(--onime-accent-text);
+    --accent-strong: var(--onime-accent-strong);
+    --accent-strong-hover: var(--onime-accent-strong-hover);
+    --accent-fg: var(--onime-accent-fg);
+    --accent-soft: var(--onime-accent-soft);
+  }
+
+  :root:not([data-theme="light"]):not(.light) [data-domain="transport"],
+  :root:not([data-theme="light"]):not(.light)[data-domain="transport"],
+  :root:not([data-theme="light"]):not(.light) [data-domain="transit"],
+  :root:not([data-theme="light"]):not(.light)[data-domain="transit"] {
+    --onime-accent: #6366f1;
+    --onime-accent-rgb: 99 102 241;
+    --onime-accent-text: #818cf8;
+    --onime-accent-text-rgb: 129 140 248;
+    --onime-accent-strong: #818cf8;
+    --onime-accent-strong-rgb: 129 140 248;
+    --onime-accent-strong-hover: #a5b4fc;
+    --onime-accent-strong-hover-rgb: 165 180 252;
+    --onime-accent-fg: #0a0a0a;
+    --onime-accent-fg-rgb: 10 10 10;
+    --onime-accent-soft: rgba(99, 102, 241, 0.18);
+    --accent: var(--onime-accent);
+    --accent-text: var(--onime-accent-text);
+    --accent-strong: var(--onime-accent-strong);
+    --accent-strong-hover: var(--onime-accent-strong-hover);
+    --accent-fg: var(--onime-accent-fg);
+    --accent-soft: var(--onime-accent-soft);
+  }
+
+  :root:not([data-theme="light"]):not(.light) [data-domain="rh"],
+  :root:not([data-theme="light"]):not(.light)[data-domain="rh"] {
+    --onime-accent: #8b5cf6;
+    --onime-accent-rgb: 139 92 246;
+    --onime-accent-text: #a78bfa;
+    --onime-accent-text-rgb: 167 139 250;
+    --onime-accent-strong: #a78bfa;
+    --onime-accent-strong-rgb: 167 139 250;
+    --onime-accent-strong-hover: #c4b5fd;
+    --onime-accent-strong-hover-rgb: 196 181 253;
+    --onime-accent-fg: #0a0a0a;
+    --onime-accent-fg-rgb: 10 10 10;
+    --onime-accent-soft: rgba(139, 92, 246, 0.18);
+    --accent: var(--onime-accent);
+    --accent-text: var(--onime-accent-text);
+    --accent-strong: var(--onime-accent-strong);
+    --accent-strong-hover: var(--onime-accent-strong-hover);
+    --accent-fg: var(--onime-accent-fg);
+    --accent-soft: var(--onime-accent-soft);
+  }
+
+  :root:not([data-theme="light"]):not(.light) [data-domain="ia"],
+  :root:not([data-theme="light"]):not(.light)[data-domain="ia"],
+  :root:not([data-theme="light"]):not(.light) [data-domain="pme"],
+  :root:not([data-theme="light"]):not(.light)[data-domain="pme"],
+  :root:not([data-theme="light"]):not(.light) [data-domain="assistant"],
+  :root:not([data-theme="light"]):not(.light)[data-domain="assistant"] {
+    --onime-accent: #3b82f6;
+    --onime-accent-rgb: 59 130 246;
+    --onime-accent-text: #60a5fa;
+    --onime-accent-text-rgb: 96 165 250;
+    --onime-accent-strong: #60a5fa;
+    --onime-accent-strong-rgb: 96 165 250;
+    --onime-accent-strong-hover: #93c5fd;
+    --onime-accent-strong-hover-rgb: 147 197 253;
+    --onime-accent-fg: #0a0a0a;
+    --onime-accent-fg-rgb: 10 10 10;
+    --onime-accent-soft: rgba(59, 130, 246, 0.18);
+    --accent: var(--onime-accent);
+    --accent-text: var(--onime-accent-text);
+    --accent-strong: var(--onime-accent-strong);
+    --accent-strong-hover: var(--onime-accent-strong-hover);
+    --accent-fg: var(--onime-accent-fg);
+    --accent-soft: var(--onime-accent-soft);
+  }
+}
+
+/* ---- Accents de domaine : sombre (forcé) ---- */
+:root[data-theme="dark"] [data-domain="sante"],
+:root[data-theme="dark"][data-domain="sante"],
+:root.dark [data-domain="sante"],
+:root.dark[data-domain="sante"],
+:root[data-theme="dark"] [data-domain="gym"],
+:root[data-theme="dark"][data-domain="gym"],
+:root.dark [data-domain="gym"],
+:root.dark[data-domain="gym"] {
+  --onime-accent: #ec4899;
+  --onime-accent-rgb: 236 72 153;
+  --onime-accent-text: #f472b6;
+  --onime-accent-text-rgb: 244 114 182;
+  --onime-accent-strong: #f472b6;
+  --onime-accent-strong-rgb: 244 114 182;
+  --onime-accent-strong-hover: #f9a8d4;
+  --onime-accent-strong-hover-rgb: 249 168 212;
+  --onime-accent-fg: #0a0a0a;
+  --onime-accent-fg-rgb: 10 10 10;
+  --onime-accent-soft: rgba(236, 72, 153, 0.16);
+  --accent: var(--onime-accent);
+  --accent-text: var(--onime-accent-text);
+  --accent-strong: var(--onime-accent-strong);
+  --accent-strong-hover: var(--onime-accent-strong-hover);
+  --accent-fg: var(--onime-accent-fg);
+  --accent-soft: var(--onime-accent-soft);
+}
+
+:root[data-theme="dark"] [data-domain="transport"],
+:root[data-theme="dark"][data-domain="transport"],
+:root.dark [data-domain="transport"],
+:root.dark[data-domain="transport"],
+:root[data-theme="dark"] [data-domain="transit"],
+:root[data-theme="dark"][data-domain="transit"],
+:root.dark [data-domain="transit"],
+:root.dark[data-domain="transit"] {
+  --onime-accent: #6366f1;
+  --onime-accent-rgb: 99 102 241;
+  --onime-accent-text: #818cf8;
+  --onime-accent-text-rgb: 129 140 248;
+  --onime-accent-strong: #818cf8;
+  --onime-accent-strong-rgb: 129 140 248;
+  --onime-accent-strong-hover: #a5b4fc;
+  --onime-accent-strong-hover-rgb: 165 180 252;
+  --onime-accent-fg: #0a0a0a;
+  --onime-accent-fg-rgb: 10 10 10;
+  --onime-accent-soft: rgba(99, 102, 241, 0.18);
+  --accent: var(--onime-accent);
+  --accent-text: var(--onime-accent-text);
+  --accent-strong: var(--onime-accent-strong);
+  --accent-strong-hover: var(--onime-accent-strong-hover);
+  --accent-fg: var(--onime-accent-fg);
+  --accent-soft: var(--onime-accent-soft);
+}
+
+:root[data-theme="dark"] [data-domain="rh"],
+:root[data-theme="dark"][data-domain="rh"],
+:root.dark [data-domain="rh"],
+:root.dark[data-domain="rh"] {
+  --onime-accent: #8b5cf6;
+  --onime-accent-rgb: 139 92 246;
+  --onime-accent-text: #a78bfa;
+  --onime-accent-text-rgb: 167 139 250;
+  --onime-accent-strong: #a78bfa;
+  --onime-accent-strong-rgb: 167 139 250;
+  --onime-accent-strong-hover: #c4b5fd;
+  --onime-accent-strong-hover-rgb: 196 181 253;
+  --onime-accent-fg: #0a0a0a;
+  --onime-accent-fg-rgb: 10 10 10;
+  --onime-accent-soft: rgba(139, 92, 246, 0.18);
+  --accent: var(--onime-accent);
+  --accent-text: var(--onime-accent-text);
+  --accent-strong: var(--onime-accent-strong);
+  --accent-strong-hover: var(--onime-accent-strong-hover);
+  --accent-fg: var(--onime-accent-fg);
+  --accent-soft: var(--onime-accent-soft);
+}
+
+:root[data-theme="dark"] [data-domain="ia"],
+:root[data-theme="dark"][data-domain="ia"],
+:root.dark [data-domain="ia"],
+:root.dark[data-domain="ia"],
+:root[data-theme="dark"] [data-domain="pme"],
+:root[data-theme="dark"][data-domain="pme"],
+:root.dark [data-domain="pme"],
+:root.dark[data-domain="pme"],
+:root[data-theme="dark"] [data-domain="assistant"],
+:root[data-theme="dark"][data-domain="assistant"],
+:root.dark [data-domain="assistant"],
+:root.dark[data-domain="assistant"] {
+  --onime-accent: #3b82f6;
+  --onime-accent-rgb: 59 130 246;
+  --onime-accent-text: #60a5fa;
+  --onime-accent-text-rgb: 96 165 250;
+  --onime-accent-strong: #60a5fa;
+  --onime-accent-strong-rgb: 96 165 250;
+  --onime-accent-strong-hover: #93c5fd;
+  --onime-accent-strong-hover-rgb: 147 197 253;
+  --onime-accent-fg: #0a0a0a;
+  --onime-accent-fg-rgb: 10 10 10;
+  --onime-accent-soft: rgba(59, 130, 246, 0.18);
+  --accent: var(--onime-accent);
+  --accent-text: var(--onime-accent-text);
+  --accent-strong: var(--onime-accent-strong);
+  --accent-strong-hover: var(--onime-accent-strong-hover);
+  --accent-fg: var(--onime-accent-fg);
+  --accent-soft: var(--onime-accent-soft);
+}

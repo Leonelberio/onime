@@ -1,0 +1,101 @@
+/* Landing marketing ONIME (partagé entre produits) */
+.marketing-landing {
+  color-scheme: light;
+  background-color: rgb(var(--onime-canvas-rgb));
+  color: rgb(var(--onime-foreground-rgb));
+}
+.landing-hero {
+  background-color: var(--onime-canvas);
+}
+.landing-hero-inner {
+  display: grid;
+  width: 100%;
+  align-items: center;
+  gap: 3rem;
+}
+@media (min-width: 1024px) {
+  .landing-hero-inner--split {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+.landing-trust-slider {
+  position: relative;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+}
+.landing-trust-slider-track {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  gap: 3.5rem;
+  animation: landing-trust-marquee 45s linear infinite;
+}
+.landing-trust-slider:hover .landing-trust-slider-track {
+  animation-play-state: paused;
+}
+.landing-trust-slide {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.25rem;
+}
+@keyframes landing-trust-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .landing-trust-slider {
+    mask-image: none;
+    overflow: visible;
+  }
+  .landing-trust-slider-track {
+    animation: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    max-width: 56rem;
+    margin-inline: auto;
+    gap: 1.5rem 2.5rem;
+  }
+}
+.landing-trust-logo {
+  opacity: 0.65;
+  filter: grayscale(1);
+  transition:
+    opacity 150ms ease-out,
+    filter 150ms ease-out;
+}
+.landing-trust-slide:hover .landing-trust-logo {
+  opacity: 1;
+  filter: grayscale(0);
+}
+.landing-glow {
+  pointer-events: none;
+}
+.landing-stats-dots {
+  background-image: radial-gradient(circle at 1px 1px, rgb(var(--onime-primary-rgb) / 0.35) 1px, transparent 0);
+  background-size: 28px 28px;
+}
+.marketing-landing--subtle-brand .landing-stats-dots {
+  background-image: radial-gradient(circle at 1px 1px, rgb(var(--onime-canvas-rgb) / 0.12) 1px, transparent 0);
+}
+.marketing-landing--subtle-brand .landing-glow {
+  background-color: rgb(var(--onime-foreground-rgb) / 0.04) !important;
+}
+
+/* Nav landing : seul l’onglet actif a un fond noir */
+.marketing-nav-link:not(.marketing-nav-link--active) {
+  background-color: transparent;
+}
+.marketing-nav-link--active {
+  background-color: #0a0a0b;
+  color: #fff;
+}
+.marketing-nav-link--active:hover {
+  color: #fff;
+}

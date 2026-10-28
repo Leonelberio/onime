@@ -1,0 +1,717 @@
+/* Menu public client - UI type app food delivery (fond sombre, cartes arrondies). */
+.rmenu {
+  --client-bg: #0b0b0c;
+  --client-surface: #1a1a1c;
+  --client-surface-elevated: #242426;
+  --client-text: #f5f5f7;
+  --client-muted: #a1a1a6;
+  --client-border: rgb(255 255 255 / 0.08);
+  --client-media: #2c2a26;
+  --client-media-text: rgb(245 245 247 / 0.35);
+  --client-max-width: 430px;
+  --client-pad-x: 1rem;
+  --client-scrollbar: rgb(255 255 255 / 0.16);
+  --client-scrollbar-hover: rgb(255 255 255 / 0.28);
+  background-color: var(--client-bg);
+  scrollbar-width: thin;
+  scrollbar-color: var(--client-scrollbar) transparent;
+  color: var(--client-text);
+  color-scheme: dark;
+}
+
+@media (min-width: 768px) {
+  .rmenu {
+    --client-max-width: 720px;
+    --client-pad-x: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .rmenu {
+    --client-max-width: 960px;
+    --client-pad-x: 2rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .rmenu {
+    --client-max-width: 1120px;
+  }
+}
+
+.rmenu .client-viewport {
+  position: relative;
+  width: 100%;
+  max-width: var(--client-max-width);
+  min-height: 100dvh;
+  margin-inline: auto;
+  background-color: var(--client-bg);
+}
+
+/* Scrollbars très fines (page + zones scrollables du menu public) */
+html:has(.rmenu),
+html:has(.rmenu) body {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(255 255 255 / 0.16) transparent;
+}
+
+html:has(.rmenu.rmenu--light),
+html:has(.rmenu.rmenu--light) body {
+  scrollbar-color: rgb(15 23 42 / 0.14) transparent;
+}
+
+html:has(.rmenu)::-webkit-scrollbar,
+html:has(.rmenu) body::-webkit-scrollbar,
+.rmenu ::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+}
+
+html:has(.rmenu)::-webkit-scrollbar-track,
+html:has(.rmenu) body::-webkit-scrollbar-track,
+.rmenu ::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+html:has(.rmenu)::-webkit-scrollbar-thumb,
+html:has(.rmenu) body::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background-color: rgb(255 255 255 / 0.16);
+}
+
+html:has(.rmenu.rmenu--light)::-webkit-scrollbar-thumb,
+html:has(.rmenu.rmenu--light) body::-webkit-scrollbar-thumb {
+  background-color: rgb(15 23 42 / 0.14);
+}
+
+html:has(.rmenu)::-webkit-scrollbar-thumb:hover,
+html:has(.rmenu) body::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(255 255 255 / 0.28);
+}
+
+html:has(.rmenu.rmenu--light)::-webkit-scrollbar-thumb:hover,
+html:has(.rmenu.rmenu--light) body::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(15 23 42 / 0.24);
+}
+
+.rmenu ::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background-color: var(--client-scrollbar);
+}
+
+.rmenu ::-webkit-scrollbar-thumb:hover {
+  background-color: var(--client-scrollbar-hover);
+}
+
+/* Pas de barre de défilement horizontale (scroll tactile / trackpad conservé) */
+.rmenu ::-webkit-scrollbar:horizontal {
+  display: none;
+  height: 0;
+}
+
+html:has(.rmenu)::-webkit-scrollbar:horizontal,
+html:has(.rmenu) body::-webkit-scrollbar:horizontal {
+  display: none;
+  height: 0;
+}
+
+/* Barre du bas et bandeau panier : alignés sur la largeur du conteneur */
+.rmenu .client-fixed-shell {
+  position: fixed;
+  z-index: 30;
+  right: 0;
+  left: 0;
+  width: min(100%, var(--client-max-width));
+  margin-inline: auto;
+  padding-inline: var(--client-pad-x);
+  box-sizing: border-box;
+}
+
+.rmenu .client-product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .rmenu .client-product-grid {
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .rmenu .client-product-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .rmenu .client-product-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+}
+
+.rmenu .client-categories {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 0.25rem;
+  margin-inline: calc(-1 * var(--client-pad-x));
+  padding-inline: var(--client-pad-x);
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.rmenu .client-categories::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+@media (min-width: 768px) {
+  .rmenu .client-categories {
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow-x: visible;
+    margin-inline: 0;
+    padding-inline: 0;
+  }
+}
+
+.rmenu .onime-input {
+  background-color: var(--client-surface);
+  color: var(--client-text);
+  border: none;
+}
+.rmenu .onime-input::placeholder {
+  color: var(--client-muted);
+}
+
+.rmenu .client-filter-btn {
+  display: flex;
+  height: 3rem;
+  width: 3rem;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--onime-radius-card);
+  background-color: var(--client-surface);
+  color: var(--client-text);
+  transition: background-color 150ms ease-out;
+}
+.rmenu .client-filter-btn:hover {
+  background-color: var(--client-surface-elevated);
+}
+
+.rmenu .client-cat-pill {
+  display: flex;
+  width: 4.5rem;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+.rmenu .client-cat-icon {
+  display: flex;
+  height: 3.75rem;
+  width: 3.75rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background-color: var(--client-surface);
+  color: var(--client-text);
+  transition: background-color 150ms ease-out, transform 150ms ease-out;
+}
+.rmenu .client-cat-pill:hover .client-cat-icon,
+.rmenu .client-cat-pill:focus-visible .client-cat-icon {
+  background-color: var(--client-surface-elevated);
+  transform: scale(1.02);
+}
+
+.rmenu .client-food-card {
+  overflow: hidden;
+  border-radius: 1.25rem;
+  background-color: var(--client-surface);
+}
+.rmenu .client-food-card:focus-within {
+  outline: 2px solid rgb(255 255 255 / 0.25);
+  outline-offset: 2px;
+}
+
+.rmenu .client-dish-fallback {
+  background-color: var(--client-media);
+  color: var(--client-media-text);
+}
+.rmenu .client-dish-fallback .client-dish-initials {
+  color: rgb(245 245 247 / 0.22);
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.rmenu .client-dish-logo {
+  max-height: 42%;
+  max-width: 58%;
+  object-fit: contain;
+  opacity: 0.38;
+  filter: grayscale(1);
+}
+
+.rmenu .client-dish-monogram {
+  font-size: 2.25rem;
+  line-height: 1;
+  color: rgb(245 245 247 / 0.2);
+  letter-spacing: -0.03em;
+}
+
+.rmenu--light .client-dish-logo {
+  opacity: 0.42;
+}
+
+/* En-tête marque (logo Gérant en couleurs) */
+.rmenu .client-brand-header {
+  margin-bottom: 0.25rem;
+}
+
+.rmenu .client-brand-logo-slot {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 2.75rem;
+}
+
+.rmenu .client-brand-logo--bare {
+  display: block;
+  max-height: 2.75rem;
+  max-width: min(9rem, 38vw);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.rmenu .client-brand-logo--nav {
+  max-height: 2.25rem;
+  max-width: 5.5rem;
+}
+
+.rmenu .client-brand-monogram--nav {
+  display: flex;
+  height: 2.25rem;
+  min-width: 2.25rem;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.125rem;
+}
+
+.rmenu .client-brand-monogram {
+  font-size: 1.625rem;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--client-muted);
+}
+
+.rmenu.rmenu--light .client-brand-monogram {
+  color: rgb(15 23 42 / 0.35);
+}
+
+.rmenu.rmenu--dark .client-brand-monogram {
+  color: rgb(245 245 247 / 0.45);
+}
+
+.rmenu--light .client-dish-monogram {
+  color: rgb(15 23 42 / 0.12);
+}
+
+.rmenu .client-tab-bar {
+  border: 1px solid var(--client-border);
+  background-color: rgb(26 26 28 / 0.92);
+  backdrop-filter: blur(12px);
+}
+.rmenu .client-tab-bar button:not([aria-current="page"]) {
+  color: var(--client-muted);
+}
+.rmenu .client-tab-bar .client-tab-active {
+  background-color: rgb(255 255 255 / 0.1);
+  color: var(--client-text);
+  border-radius: 14px;
+}
+
+.rmenu .client-fav-btn {
+  color: rgb(245 245 247 / 0.85);
+}
+.rmenu .client-fav-btn[aria-pressed="true"] {
+  color: var(--brand);
+}
+
+.rmenu .client-add-btn {
+  display: flex;
+  height: 2.25rem;
+  width: 2.25rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background-color: var(--brand);
+  color: var(--brand-fg);
+  box-shadow: 0 4px 14px rgb(0 0 0 / 0.35);
+}
+
+.rmenu .client-card-stepper {
+  display: flex;
+  align-items: center;
+  border-radius: 9999px;
+  border: 1px solid var(--client-border);
+  background-color: var(--client-surface);
+  padding: 0.125rem;
+}
+
+.rmenu .client-card-stepper-btn {
+  display: flex;
+  height: 2rem;
+  width: 2rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  color: var(--client-text);
+  transition: background-color 150ms ease-out;
+}
+
+.rmenu .client-card-stepper-btn:hover {
+  background-color: var(--client-surface-elevated);
+}
+
+.rmenu .client-card-stepper-btn--plus {
+  background-color: var(--brand);
+  color: var(--brand-fg);
+}
+
+.rmenu .client-card-stepper-btn--plus:hover {
+  background-color: var(--brand-hover);
+}
+
+.rmenu .client-card-stepper-qty {
+  min-width: 1.375rem;
+  padding-inline: 0.125rem;
+  text-align: center;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--client-text);
+}
+
+.rmenu .text-muted-foreground {
+  color: var(--client-muted);
+}
+.rmenu .onime-card {
+  background-color: var(--client-surface);
+  border: 1px solid var(--client-border);
+  box-shadow: none;
+}
+
+/* Accents marque : réservés aux CTA principaux, pas aux placeholders ni à la nav */
+.rmenu .rtext {
+  color: var(--client-muted);
+}
+.rmenu .client-screen-title {
+  font-family: var(--font-display, inherit);
+  font-size: 1.375rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.rmenu .client-app-main {
+  padding-inline: var(--client-pad-x);
+}
+
+.rmenu .skeleton {
+  background-color: var(--client-surface-elevated);
+}
+
+.rmenu .skeleton.client-cat-icon {
+  background-color: var(--client-surface);
+}
+
+@media (min-width: 768px) {
+  .rmenu .client-food-card h3 {
+    font-size: 1rem;
+  }
+  .rmenu .client-cat-icon {
+    height: 4.25rem;
+    width: 4.25rem;
+  }
+}
+
+/* Mode clair */
+.rmenu.rmenu--light,
+.rmenu[data-client-theme="light"] {
+  --client-bg: #f8f7f4;
+  --client-surface: #ffffff;
+  --client-surface-elevated: #f0efe8;
+  --client-text: #0f172a;
+  --client-muted: #64748b;
+  --client-border: rgb(15 23 42 / 0.1);
+  --client-media: #ebe6dc;
+  --client-media-text: rgb(15 23 42 / 0.35);
+  --client-scrollbar: rgb(15 23 42 / 0.14);
+  --client-scrollbar-hover: rgb(15 23 42 / 0.24);
+  color-scheme: light;
+}
+
+.rmenu--light .client-tab-bar {
+  background-color: rgb(255 255 255 / 0.94);
+}
+
+.rmenu--light .client-tab-bar .client-tab-active {
+  background-color: rgb(15 23 42 / 0.06);
+}
+
+.rmenu--light .client-food-card:focus-within {
+  outline-color: rgb(15 23 42 / 0.18);
+}
+
+.rmenu--light .client-dish-fallback .client-dish-initials {
+  color: rgb(15 23 42 / 0.14);
+}
+
+.rmenu--light .client-fav-btn {
+  color: rgb(15 23 42 / 0.5);
+}
+
+.rmenu--light .client-add-btn {
+  box-shadow: 0 4px 12px rgb(15 23 42 / 0.15);
+}
+
+.rmenu .client-theme-toggle {
+  display: flex;
+  height: 2.5rem;
+  width: 2.5rem;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background-color: var(--client-surface);
+  color: var(--client-text);
+  border: 1px solid var(--client-border);
+  transition: background-color 150ms ease-out;
+}
+
+.rmenu .client-theme-toggle:hover {
+  background-color: var(--client-surface-elevated);
+}
+
+.rmenu .client-header-menu {
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  min-width: 12rem;
+  overflow: hidden;
+  border-radius: 0.875rem;
+  border: 1px solid var(--client-border);
+  background-color: var(--client-surface-elevated);
+  padding: 0.35rem;
+  box-shadow: 0 12px 40px rgb(0 0 0 / 0.28);
+}
+
+.rmenu .client-header-menu--portal {
+  position: fixed;
+}
+
+.rmenu .client-header-menu-list {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.125rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: 100%;
+}
+
+.rmenu .client-header-menu-list > li {
+  display: block;
+  width: 100%;
+}
+
+.rmenu .client-header-menu-item {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  box-sizing: border-box;
+  align-items: center;
+  gap: 0.75rem;
+  border-radius: 0.625rem;
+  padding: 0.7rem 0.85rem;
+  text-align: left;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--client-text);
+  transition: background-color 150ms ease-out;
+}
+
+.rmenu .client-header-menu-item:hover,
+.rmenu .client-header-menu-item:focus-visible {
+  background-color: var(--client-surface);
+  outline: none;
+}
+
+.rmenu.rmenu--light .client-header-menu {
+  box-shadow: 0 10px 32px rgb(15 23 42 / 0.12);
+}
+
+/* Tokens ONIME → palette client (bg-surface, onime-btn, Alert, etc.) */
+.rmenu.rmenu--dark {
+  --onime-canvas: var(--client-bg);
+  --onime-canvas-rgb: 11 11 12;
+  --onime-surface: var(--client-surface);
+  --onime-surface-rgb: 26 26 28;
+  --onime-raised: var(--client-surface-elevated);
+  --onime-raised-rgb: 36 36 38;
+  --onime-hover: #2e2e32;
+  --onime-hover-rgb: 46 46 50;
+  --onime-foreground: var(--client-text);
+  --onime-foreground-rgb: 245 245 247;
+  --onime-muted-foreground: var(--client-muted);
+  --onime-muted-foreground-rgb: 161 161 166;
+  --onime-subtle: var(--client-muted);
+  --onime-subtle-rgb: 161 161 166;
+  --onime-faint: #6b7280;
+  --onime-faint-rgb: 107 114 128;
+  --onime-border: var(--client-border);
+  --onime-border-hover: rgb(255 255 255 / 0.14);
+  --onime-field-border: rgb(255 255 255 / 0.22);
+  --onime-field-border-rgb: 255 255 255;
+  --onime-focus: var(--client-text);
+  --onime-focus-rgb: 245 245 247;
+  --onime-success-text: #4ade80;
+  --onime-success-text-rgb: 74 222 128;
+  --onime-success-soft: rgba(74, 222, 128, 0.14);
+  --onime-info-text: #93c5fd;
+  --onime-info-text-rgb: 147 197 253;
+  --onime-info-soft: rgba(147, 197, 253, 0.14);
+  --onime-error-text: #fca5a5;
+  --onime-error-text-rgb: 252 165 165;
+  --onime-error-soft: rgba(248, 113, 113, 0.16);
+  --onime-caution-text: #fcd34d;
+  --onime-caution-text-rgb: 252 211 77;
+  --onime-caution-soft: rgba(251, 191, 36, 0.16);
+}
+
+.rmenu.rmenu--light {
+  --onime-canvas: var(--client-bg);
+  --onime-canvas-rgb: 248 247 244;
+  --onime-surface: var(--client-surface-elevated);
+  --onime-surface-rgb: 240 239 232;
+  --onime-raised: var(--client-surface);
+  --onime-raised-rgb: 255 255 255;
+  --onime-hover: #eceae6;
+  --onime-hover-rgb: 236 234 230;
+  --onime-foreground: var(--client-text);
+  --onime-foreground-rgb: 15 23 42;
+  --onime-muted-foreground: var(--client-muted);
+  --onime-muted-foreground-rgb: 100 116 139;
+  --onime-subtle: var(--client-muted);
+  --onime-subtle-rgb: 100 116 139;
+  --onime-faint: #94a3b8;
+  --onime-faint-rgb: 148 163 184;
+  --onime-border: var(--client-border);
+  --onime-border-hover: rgb(15 23 42 / 0.14);
+  --onime-field-border: #85878f;
+  --onime-field-border-rgb: 133 135 143;
+  --onime-focus: var(--client-text);
+  --onime-focus-rgb: 15 23 42;
+}
+
+.rmenu .onime-card--flat {
+  background-color: var(--client-surface-elevated);
+  border: 1px solid var(--client-border);
+}
+
+.rmenu .client-inline-stepper {
+  background-color: var(--client-surface);
+  border: 1px solid var(--client-border);
+}
+
+.rmenu .client-track-card {
+  background-color: var(--client-surface);
+  border: 1px solid var(--client-border);
+}
+
+.rmenu .client-table-dialog {
+  margin-inline: auto;
+  max-width: min(100%, var(--client-max-width));
+  border-color: var(--client-border);
+  background-color: var(--client-surface);
+  color: var(--client-text);
+}
+
+.rmenu .client-table-dialog::backdrop {
+  background: rgb(0 0 0 / 0.55);
+}
+
+.rmenu.rmenu--light .client-table-dialog::backdrop {
+  background: rgb(15 23 42 / 0.35);
+}
+
+.rmenu .m-ink {
+  background-color: var(--client-text);
+  color: var(--client-bg);
+}
+
+.rmenu .onime-textarea,
+.rmenu .onime-input {
+  background-color: var(--client-surface);
+  color: var(--client-text);
+  border-color: var(--client-border);
+}
+
+.rmenu .onime-label,
+.rmenu .onime-help {
+  color: var(--client-muted);
+}
+
+.rmenu .onime-btn--secondary {
+  background-color: var(--client-surface);
+  border-color: var(--client-border);
+  color: var(--client-text);
+}
+
+.rmenu .onime-btn--secondary:hover:not(:disabled) {
+  background-color: var(--client-surface-elevated);
+}
+
+.rmenu .onime-btn--tertiary {
+  color: var(--client-muted);
+}
+
+.rmenu .onime-btn--tertiary:hover:not(:disabled) {
+  background-color: var(--client-surface-elevated);
+  color: var(--client-text);
+}
+
+.rmenu .onime-btn-icon {
+  color: var(--client-text);
+}
+
+.rmenu .onime-btn-icon:hover:not(:disabled) {
+  background-color: var(--client-surface-elevated);
+}
+
+.rmenu .text-foreground {
+  color: var(--client-text);
+}
+
+.rmenu .hover\:text-foreground:hover {
+  color: var(--client-text);
+}
+
+.rmenu .hover\:bg-accent:hover {
+  background-color: var(--client-surface-elevated);
+}
+
+.rmenu .border-border,
+.rmenu .border-border-hover {
+  border-color: var(--client-border);
+}
