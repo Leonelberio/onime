@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { CLIENT_NAME } from "@/lib/branding";
 
 type InstallPromptEvent = Event & { prompt: () => Promise<void> };
 
@@ -22,7 +23,9 @@ export function PwaInstallHint() {
 
   return (
     <div className="fixed inset-x-3 bottom-20 z-40 rounded-card border border-primary/30 bg-card p-3 lg:bottom-6 lg:left-6 lg:right-auto lg:max-w-sm">
-      <p className="text-body-sm">Installez Glow Face sur votre téléphone pour un accès rapide au pointage.</p>
+      <p className="text-body-sm">
+        Installez {CLIENT_NAME} sur votre téléphone pour un accès rapide au pointage et à votre boutique.
+      </p>
       <div className="mt-2 flex gap-2">
         <button
           type="button"
