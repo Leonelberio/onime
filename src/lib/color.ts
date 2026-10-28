@@ -1,6 +1,6 @@
 ﻿/** Utilitaires couleur + contraste WCAG (couleur de marque libre choisie par le Gérant). */
 
-export const DEFAULT_BRAND = "#E8445A"; // rouge rosé Onime Menu
+export const DEFAULT_BRAND = "#44D600"; // vert logo ONIME
 export const INK = "#0f172a";
 
 export function isHex(v: string): boolean {

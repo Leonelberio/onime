@@ -2,13 +2,13 @@ import "server-only";
 import { cookies } from "next/headers";
 import type { Boutique, Organization, User } from "@prisma/client";
 import { db } from "../db";
+import {
+  BOUTIQUE_CONTEXT_COOKIE,
+  CONSOLIDATED_BOUTIQUE,
+  type BoutiqueViewMode,
+} from "./boutique-constants";
 
-/** Valeur cookie pour la vue consolidée (propriétaire). */
-export const CONSOLIDATED_BOUTIQUE = "consolidated";
-
-export const BOUTIQUE_CONTEXT_COOKIE = "onime_boutique";
-
-export type BoutiqueViewMode = "boutique" | "consolidated";
+export { BOUTIQUE_CONTEXT_COOKIE, CONSOLIDATED_BOUTIQUE, type BoutiqueViewMode } from "./boutique-constants";
 
 export async function listAccessibleBoutiques(user: User, organizationId: string): Promise<Boutique[]> {
   if (user.role === "EMPLOYEE") {

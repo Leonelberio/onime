@@ -5,7 +5,7 @@ export function AuthCard({ children, wide = false }: { children: React.ReactNode
   return (
     <div className={`onime-card card-pad ${wide ? "max-w-lg w-full" : ""}`}>
       <div className="mb-6 flex justify-center border-b border-border pb-6 pt-2">
-        <Logo href="/connexion" />
+        <Logo href="/" />
       </div>
       {children}
     </div>

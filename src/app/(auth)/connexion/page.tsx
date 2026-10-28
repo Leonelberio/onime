@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { AuthCard } from "@/components/auth/auth-card";
 import { AuthForm } from "@/components/auth/auth-form";
@@ -23,6 +24,12 @@ export default async function LoginPage() {
           { name: "password", label: "Mot de passe", type: "password", autoComplete: "current-password" },
         ]}
       />
+      <p className="mt-6 text-center text-body-sm text-muted-foreground">
+        Pas encore de compte ?{" "}
+        <Link href="/inscription" className="font-semibold text-primary-text underline-offset-2 hover:underline">
+          Créer votre espace vendeur
+        </Link>
+      </p>
     </AuthCard>
   );
 }

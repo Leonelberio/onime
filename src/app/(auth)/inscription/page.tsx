@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { AuthCard } from "@/components/auth/auth-card";
 import { OnboardingWizard } from "@/components/auth/onboarding-wizard";
@@ -16,6 +17,12 @@ export default async function SignUpPage() {
       <div className="mt-6">
         <OnboardingWizard />
       </div>
+      <p className="mt-6 text-center text-body-sm text-muted-foreground">
+        Déjà inscrit ?{" "}
+        <Link href="/connexion" className="font-semibold text-primary-text underline-offset-2 hover:underline">
+          Se connecter
+        </Link>
+      </p>
     </AuthCard>
   );
 }

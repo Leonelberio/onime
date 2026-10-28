@@ -1,23 +1,25 @@
 ﻿import {
-  BarChart3,
-  BellRing,
-  ChefHat,
-  CirclePlay,
+  Barcode,
+  Building2,
+  Clock,
   LayoutGrid,
+  LogIn,
   MessageCircleQuestion,
-  QrCode,
-  ShieldCheck,
-  Smartphone,
+  Package,
+  ScanLine,
+  ShoppingCart,
   Sparkles,
-  UtensilsCrossed,
+  Store,
+  TrendingUp,
   Zap,
 } from "lucide-react";
 import { LinkButton } from "@/components/ui";
 import { Logo } from "@/components/ui/logo";
+import { APP_TAGLINE, CLIENT_NAME } from "@/lib/branding";
 import { formatFcfa } from "@/lib/money";
 import { TRIAL_DAYS } from "@/lib/subscription";
 import type { MarketingLandingConfig } from "../../design-system/marketing/types";
-import { TRUST_RESTAURANTS as TRUST_PARTNERS } from "../../design-system/marketing/trust-presets";
+import { TRUST_PME } from "../../design-system/marketing/trust-presets";
 
 export type LandingPlan = {
   id: string;
@@ -26,41 +28,46 @@ export type LandingPlan = {
   description: string | null;
 };
 
-function MenuPreviewMock() {
+function DashboardPreviewMock() {
   return (
     <div aria-hidden="true" className="relative mx-auto w-full max-w-[340px]">
       <div className="landing-glow absolute -inset-4 rounded-[32px] blur-2xl" />
       <div className="relative onime-card rounded-[28px] p-3 shadow-none">
         <div className="rounded-[22px] bg-card p-4 ring-1 ring-border/60">
-          <div className="flex items-center gap-3 border-b border-border/60 pb-4">
-            <span className="flex h-12 w-12 items-center justify-center rounded-card bg-foreground font-display text-xl font-bold text-background">
-              M
-            </span>
+          <div className="flex items-center justify-between border-b border-border/60 pb-3">
             <div>
-              <p className="font-display text-lg font-bold leading-tight">Maquis Chez Ama</p>
-              <p className="text-caption text-muted-foreground">Table 4 · Menu du jour</p>
+              <p className="font-display text-lg font-bold leading-tight">Maison Awa</p>
+              <p className="text-caption text-muted-foreground">Vue consolidée · 3 boutiques</p>
             </div>
+            <span className="rounded-pill bg-primary px-2.5 py-1 text-caption font-bold text-[var(--onime-on-primary)]">
+              ONIME
+            </span>
+          </div>
+          <div className="mt-3 grid grid-cols-2 gap-2">
+            {[
+              ["Ventes du jour", "842 000 F"],
+              ["Stock bas", "12 refs"],
+              ["Pointages", "18/22"],
+              ["Achats", "3 en cours"],
+            ].map(([label, value]) => (
+              <div key={label} className="rounded-button bg-surface p-2.5 ring-1 ring-border/60">
+                <p className="text-caption text-muted-foreground">{label}</p>
+                <p className="mt-0.5 text-body-sm font-bold">{value}</p>
+              </div>
+            ))}
           </div>
           {[
-            ["Poulet braisé & attiéké", "3 500"],
-            ["Alloco sauce graine", "1 500"],
-            ["Bissap maison", "500"],
-          ].map(([name, price]) => (
-            <div key={name} className="mt-3 flex items-center gap-3 rounded-button bg-surface p-2.5">
-              <span className="h-14 w-14 shrink-0 rounded-button bg-muted" />
+            ["Riz parfumé 25 kg", "Stock 8 · Cocody"],
+            ["Huile 5 L", "Stock 2 · Plateau"],
+          ].map(([name, meta]) => (
+            <div key={name} className="mt-2 flex items-center gap-2 rounded-button bg-surface p-2">
+              <Barcode className="h-4 w-4 shrink-0 text-primary-text" aria-hidden="true" />
               <div className="min-w-0 flex-1">
                 <p className="truncate text-body-sm font-semibold">{name}</p>
-                <p className="text-caption text-muted-foreground">{price} FCFA</p>
+                <p className="text-caption text-muted-foreground">{meta}</p>
               </div>
-              <span className="flex h-9 w-9 items-center justify-center rounded-pill border border-border bg-card text-caption font-bold text-foreground">
-                +
-              </span>
             </div>
           ))}
-          <div className="mt-4 flex items-center justify-between rounded-button bg-foreground px-4 py-3 text-body-sm font-semibold text-background">
-            <span>Commande (3)</span>
-            <span>5 500 FCFA</span>
-          </div>
         </div>
       </div>
     </div>
@@ -73,8 +80,8 @@ function PricingCards({ plans }: { plans: LandingPlan[] }) {
       ? plans.slice(0, 3)
       : [
           { id: "trial", name: "Essai", priceMonthly: 0, description: `${TRIAL_DAYS} jours complets` },
-          { id: "pro", name: "Pro", priceMonthly: 15000, description: "1 établissement · QR illimités" },
-          { id: "team", name: "Équipe", priceMonthly: 35000, description: "Serveurs · cuisine · support prioritaire" },
+          { id: "pro", name: "Pro", priceMonthly: 25000, description: "1 organisation · jusqu'à 3 boutiques" },
+          { id: "scale", name: "Réseau", priceMonthly: 55000, description: "Boutiques illimitées · vue consolidée" },
         ];
 
   const tierCount = tiers.length;
@@ -84,6 +91,11 @@ function PricingCards({ plans }: { plans: LandingPlan[] }) {
       : tierCount === 2
         ? "max-w-3xl grid-cols-1 sm:grid-cols-2"
         : "max-w-5xl grid-cols-1 sm:grid-cols-2 lg:grid-cols-3";
+
+  const bullets = (featured: boolean) =>
+    featured
+      ? ["Multi-boutiques", "Codes-barres", "Pointage GPS", "Support prioritaire"]
+      : ["Stock & ventes", "Achats fournisseurs", "Tableau de bord", "Support email"];
 
   return (
     <ul className={`mx-auto mt-10 grid w-full gap-4 lg:gap-6 ${gridClass}`}>
@@ -112,7 +124,7 @@ function PricingCards({ plans }: { plans: LandingPlan[] }) {
               {plan.description ? ` · ${plan.description}` : ""}
             </p>
             <ul className="mt-6 flex flex-1 flex-col gap-2.5 text-body-sm">
-              {["Menu illimité", "QR tables & PDF", "Écran cuisine", featured ? "Serveurs invités" : "Support email"].map((line) => (
+              {bullets(featured).map((line) => (
                 <li key={line} className="flex items-center gap-2">
                   <span className={featured ? "text-background" : "text-muted-foreground"} aria-hidden="true">
                     ✓
@@ -135,7 +147,7 @@ function PricingCards({ plans }: { plans: LandingPlan[] }) {
   );
 }
 
-export function buildMenuMarketingConfig(plans: LandingPlan[]): MarketingLandingConfig {
+export function buildStockMarketingConfig(plans: LandingPlan[]): MarketingLandingConfig {
   return {
     brandAccent: "subtle",
     logo: <Logo href="/" />,
@@ -147,64 +159,65 @@ export function buildMenuMarketingConfig(plans: LandingPlan[]): MarketingLanding
     ],
     loginHref: "/connexion",
     signupHref: "/inscription",
+    signupLabel: "Créer mon compte",
     hero: {
       title: (
         <>
-          Le menu digital et les{" "}
+          Pilotez vos{" "}
           <span className="relative whitespace-nowrap">
-            commandes à table
-              <span className="absolute -bottom-1 left-0 h-1 w-full rounded-pill bg-primary/35" aria-hidden="true" />
+            boutiques
+            <span className="absolute -bottom-1 left-0 h-1 w-full rounded-pill bg-primary/35" aria-hidden="true" />
           </span>{" "}
-          à l&apos;échelle de votre salle.
+          : stock, ventes et équipes au même endroit.
         </>
       ),
       subtitle:
-        "QR code, carte mobile, cuisine en temps réel et équipe connectée - sans application à installer pour vos clients.",
-      primaryCta: { href: "/inscription", label: "Demander une démo" },
-      secondaryCta: { href: "/r/demo", label: "Voir le menu démo", icon: CirclePlay },
-      footnote: `${TRIAL_DAYS} jours gratuits · sans carte bancaire · vous encaissez comme d'habitude`,
-      visual: <MenuPreviewMock />,
+        "ONIME Shop est pensé pour les vendeurs et réseaux de magasins en Afrique de l'Ouest : inventaire, achats, ventes en FCFA, pointage employés et vue consolidée pour le propriétaire.",
+      primaryCta: { href: "/inscription", label: "Créer mon espace vendeur" },
+      secondaryCta: { href: "/connexion", label: "J'ai déjà un compte", icon: LogIn },
+      footnote: `${TRIAL_DAYS} jours gratuits · sans carte bancaire · multi-boutiques dès l'inscription`,
+      visual: <DashboardPreviewMock />,
     },
     trust: {
-      title: "Des dizaines de Entreprises nous font confiance",
-      partners: TRUST_PARTNERS,
+      title: "Des commerçants et PME nous font confiance",
+      partners: TRUST_PME,
     },
     features: {
       id: "fonctions",
-      title: "Comment ça marche",
+      title: "Tout pour vendre et contrôler",
       subtitle:
-        "Tout ce qu'il faut pour remplacer la carte papier et fluidifier le service - sans changer vos habitudes de paiement.",
+        "Une seule plateforme pour remplacer les cahiers, les fichiers Excel éparpillés et les pointages informels.",
       items: [
         {
-          icon: Smartphone,
-          title: "Menu mobile sans appli",
-          text: "Photos, prix en FCFA, catégories claires : vos clients commandent depuis leur téléphone en quelques secondes.",
+          icon: Package,
+          title: "Stock & inventaire",
+          text: "Produits, seuils d'alerte, mouvements et scan code-barres depuis le téléphone ou l'ordinateur.",
         },
         {
-          icon: QrCode,
-          title: "QR par table",
-          text: "Un QR global ou un QR par table, prêt à imprimer. Le numéro de table est déjà renseigné.",
+          icon: ShoppingCart,
+          title: "Ventes & achats",
+          text: "Enregistrez ventes et commandes fournisseurs, clients et références — montants en FCFA.",
         },
         {
-          icon: BellRing,
-          title: "Cuisine en direct",
-          text: "Nouvelle commande, alerte sonore, colonnes Nouveau → En préparation → Prêt → Servi.",
+          icon: Clock,
+          title: "Pointage équipe",
+          text: "Check-in / check-out avec géolocalisation sur le lieu de travail, export et suivi manager.",
         },
         {
-          icon: ChefHat,
-          title: "Serveurs sur le terrain",
-          text: "Invitez l'équipe : prise de commande à table et suivi des tables depuis le mobile.",
+          icon: Building2,
+          title: "Multi-boutiques",
+          text: "Une organisation, plusieurs points de vente : basculez entre une boutique ou la vue consolidée.",
         },
       ],
     },
     showcases: {
       left: {
-        kicker: "Tout-en-un",
-        title: "Une seule plateforme pour la salle, la cuisine et le manager",
-        text: "Carte, commandes, équipe et QR : plus besoin de jongler entre WhatsApp, feuilles volantes et tickets illisibles.",
+        kicker: "Terrain",
+        title: "Vendez plus vite, avec moins d'erreurs",
+        text: "Scannez un code-barres pour retrouver un produit, enregistrez une vente en quelques taps et gardez le stock à jour en temps réel.",
         footer: (
           <div className="grid grid-cols-4 gap-3 sm:grid-cols-6">
-            {[Smartphone, QrCode, ChefHat, UtensilsCrossed, BarChart3, ShieldCheck].map((Icon, i) => (
+            {[ScanLine, Barcode, ShoppingCart, Package, Store, TrendingUp].map((Icon, i) => (
               <span
                 key={i}
                 className="flex aspect-square items-center justify-center rounded-card bg-card ring-1 ring-border/80"
@@ -216,12 +229,12 @@ export function buildMenuMarketingConfig(plans: LandingPlan[]): MarketingLanding
         ),
       },
       right: {
-        kicker: "Pilotage",
-        title: "Visibilité sur l'activité du service",
-        text: "Suivez les commandes en cours, l'état des tables et la charge cuisine - en direct, depuis n'importe quel appareil.",
+        kicker: "Direction",
+        title: "Vue propriétaire sur tout le réseau",
+        text: "CA du jour, stocks critiques, pointages et achats en cours — par boutique ou consolidé pour toute l'organisation.",
         footer: (
           <div className="grid grid-cols-3 gap-2">
-            {["Entrées", "Grillades", "Boissons", "Desserts", "Spécialités", "Menu enfant"].map((label) => (
+            {["Cocody", "Plateau", "Marcory", "Yopougon", "Abobo", "Consolidé"].map((label) => (
               <span
                 key={label}
                 className="rounded-button bg-surface px-2 py-3 text-center text-caption font-semibold text-foreground ring-1 ring-border"
@@ -235,9 +248,21 @@ export function buildMenuMarketingConfig(plans: LandingPlan[]): MarketingLanding
     },
     steps: {
       items: [
-        { icon: LayoutGrid, title: "Créez votre carte", text: "Plats, photos, disponibilité - tout se gère depuis le tableau de bord." },
-        { icon: Sparkles, title: "Imprimez vos QR", text: "PDF prêt pour vos tables et votre comptoir, avec votre identité visuelle." },
-        { icon: Zap, title: "Servez plus vite", text: "Moins d'allers-retours, moins d'erreurs, plus de turnover aux heures de pointe." },
+        {
+          icon: LayoutGrid,
+          title: "Créez votre organisation",
+          text: "Nom, devise FCFA, première boutique : l'assistant d'inscription vous guide en 3 étapes.",
+        },
+        {
+          icon: Sparkles,
+          title: "Ajoutez produits & équipe",
+          text: "Importez votre stock, invitez vos vendeurs et configurez le pointage sur site.",
+        },
+        {
+          icon: Zap,
+          title: "Pilotez au quotidien",
+          text: "Ventes, achats, alertes stock bas et tableaux de bord — depuis le navigateur ou le mobile.",
+        },
       ],
     },
     pricing: (
@@ -247,7 +272,7 @@ export function buildMenuMarketingConfig(plans: LandingPlan[]): MarketingLanding
             Tarifs simples, en FCFA
           </h2>
           <p className="mt-3 text-body text-muted-foreground">
-            Commencez gratuitement, passez au forfait qui correspond à votre volume quand vous êtes prêt.
+            Commencez gratuitement, ajoutez des boutiques quand votre activité grandit.
           </p>
         </div>
         <PricingCards plans={plans} />
@@ -255,61 +280,60 @@ export function buildMenuMarketingConfig(plans: LandingPlan[]): MarketingLanding
     ),
     faq: {
       title: "Questions fréquentes",
-      subtitle: "Besoin d'un coup de main pour la mise en place ? Écrivez-nous depuis votre espace après inscription.",
+      subtitle: "Besoin d'aide pour démarrer ? Contactez-nous depuis votre espace après inscription.",
       aside: (
         <p className="mt-6 flex items-center gap-2 text-body-sm font-medium text-foreground">
           <MessageCircleQuestion className="h-5 w-5 text-primary-text" aria-hidden="true" />
-          Support en français, fuseau Afrique de l&apos;Ouest
+          Support en français · fuseau Afrique de l&apos;Ouest
         </p>
       ),
       items: [
         {
-          q: "Faut-il du matériel spécial ?",
-          a: "Non. Un smartphone ou une tablette pour la cuisine et le service suffit. Vos clients utilisent leur propre téléphone.",
+          q: "Comment créer un compte ?",
+          a: "Cliquez sur « Créer mon compte » ou « Créer mon espace vendeur », puis suivez l'assistant : organisation, première boutique, compte propriétaire.",
         },
         {
-          q: "Comment mes clients paient-ils ?",
-          a: "Comme aujourd'hui : à table auprès du serveur. Onime Menu ne prend aucune commission sur les encaissements.",
+          q: "Puis-je gérer plusieurs magasins ?",
+          a: "Oui. ONIME est multi-boutiques : une organisation regroupe plusieurs points de vente avec une vue consolidée pour le propriétaire.",
         },
         {
-          q: "Puis-je modifier le menu en cours de service ?",
-          a: "Oui. Plats épuisés, prix du jour, nouvelles suggestions : les changements sont visibles immédiatement sur le QR.",
+          q: "Le pointage fonctionne comment ?",
+          a: "Les employés pointent depuis leur téléphone sur le lieu de travail (géolocalisation configurable). Les managers suivent et exportent les heures.",
         },
         {
-          q: "Que se passe-t-il après l'essai gratuit ?",
-          a: `Vous choisissez un forfait mensuel en FCFA, sans engagement. Vos données restent en place si vous mettez en pause.`,
+          q: "Que se passe-t-il après l'essai ?",
+          a: `Vous choisissez un forfait mensuel en FCFA. Vos données restent en place ; vous pouvez mettre en pause si besoin.`,
         },
       ],
     },
     stats: [
-      { value: "120+", label: "Entreprises équipés" },
-      { value: "48k+", label: "Commandes traitées" },
-      { value: "4.9/5", label: "Satisfaction équipes" },
-      { value: "< 2 min", label: "Mise en route moyenne" },
+      { value: "Multi", label: "Boutiques par organisation" },
+      { value: "FCFA", label: "Ventes & achats natifs" },
+      { value: "GPS", label: "Pointage sur site" },
+      { value: "< 5 min", label: "Première inscription" },
     ],
     finalCta: {
-      title: "Transformez votre salle et accélérez le service dès aujourd'hui",
-      subtitle: "Rejoignez les Entreprises qui ont déjà adopté le menu QR. Configuration guidée, équipe invitée en un clic.",
-      button: { href: "/inscription", label: "Créer mon Boutique" },
+      title: "Lancez votre espace vendeur ONIME aujourd'hui",
+      subtitle: "Stock, ventes, achats et équipes — configuré pour les commerçants qui veulent grandir sans perdre le contrôle.",
+      button: { href: "/inscription", label: "Créer mon compte gratuitement" },
       circleHref: "/inscription",
     },
     footer: {
       brand: <Logo href="/" />,
-      tagline: "Menus numériques et commandes à table pour Entreprises - produit de l'écosystème ONIME.",
+      tagline: `${CLIENT_NAME} Shop — ${APP_TAGLINE}. Produit de l'écosystème ONIME Solutions.`,
       columns: [
         {
           title: "Produit",
           links: [
             { href: "#fonctions", label: "Fonctionnalités" },
             { href: "#tarifs", label: "Tarifs" },
-            { href: "/r/demo", label: "Menu démo" },
           ],
         },
         {
           title: "Compte",
           links: [
             { href: "/connexion", label: "Connexion" },
-            { href: "/inscription", label: "Inscription" },
+            { href: "/inscription", label: "Créer un compte" },
           ],
         },
         {
@@ -317,7 +341,10 @@ export function buildMenuMarketingConfig(plans: LandingPlan[]): MarketingLanding
           links: [{ href: "#faq", label: "FAQ" }],
         },
       ],
-      copyright: `© ${new Date().getFullYear()} Onime Menu · Tous droits réservés`,
+      copyright: `© ${new Date().getFullYear()} ${CLIENT_NAME} · Tous droits réservés`,
     },
   };
 }
+
+/** @deprecated Utiliser buildStockMarketingConfig */
+export const buildMenuMarketingConfig = buildStockMarketingConfig;

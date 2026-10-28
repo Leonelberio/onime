@@ -1,6 +1,6 @@
 "use client";
 
-import { CONSOLIDATED_BOUTIQUE } from "@/lib/auth/boutique-context";
+import { CONSOLIDATED_BOUTIQUE } from "@/lib/auth/boutique-constants";
 import type { Boutique } from "@prisma/client";
 import { setActiveBoutiqueAndRedirect } from "@/lib/actions/boutique-context";
 

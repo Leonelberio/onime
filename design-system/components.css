@@ -69,11 +69,7 @@
 .onime-btn--accent:hover:not(:disabled) { background-color: var(--onime-accent-strong-hover); }
 
 /* Secondaire : surface linen + bordure diluée */
-.onime-btn--secondary {
-  color: rgb(var(--onime-foreground-rgb));
-  background-color: var(--onime-surface);
-  border-color: var(--onime-border);
-}
+.onime-btn--secondary { background-color: var(--onime-surface); border-color: var(--onime-border); }
 .onime-btn--secondary:hover:not(:disabled) { background-color: var(--onime-canvas); border-color: var(--onime-border-hover); }
 .onime-btn--secondary.is-selected,
 .onime-btn--secondary[aria-pressed="true"] { color: var(--onime-accent-text); background-color: var(--onime-accent-soft); border-color: transparent; }

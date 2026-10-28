@@ -36,8 +36,8 @@
 
 /* ===== Parcours client (menu public) : surfaces et boutons de marque, tous issus des tokens ===== */
 :root {
-  /* Jaune de marque ONIME (charte) - CTA du bandeau héro et pastilles de panier ; texte ink dessus (≥ 12:1) */
-  --m-yellow: #ffc400;
+  /* Vert logo ONIME — CTA marketing ; texte ink dessus */
+  --m-yellow: #44D600;
   --m-on-yellow: #0f172a;
   --m-hero: var(--onime-foreground);
   --m-hero-fg: var(--onime-canvas);

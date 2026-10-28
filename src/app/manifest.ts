@@ -7,7 +7,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: `${CLIENT_LEGAL_NAME} — ${APP_TAGLINE}`,
     short_name: CLIENT_NAME,
     description: `${CLIENT_LEGAL_NAME} : pointage, stock et ventes.`,
-    start_url: "/connexion",
+    start_url: "/",
     scope: "/",
     display: "standalone",
     orientation: "portrait-primary",

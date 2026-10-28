@@ -1,4 +1,5 @@
 import { execSync } from "node:child_process";
+import { prismaMigrateDeploy } from "./prisma-migrate-deploy.mjs";
 
 const env = { ...process.env };
 
@@ -16,6 +17,6 @@ function run(cmd) {
   execSync(cmd, { stdio: "inherit", env });
 }
 
-run("pnpm exec prisma migrate deploy");
+prismaMigrateDeploy(env);
 run("pnpm exec prisma generate");
 run("pnpm exec next build");

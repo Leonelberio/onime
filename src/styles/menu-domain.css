@@ -1,39 +1,39 @@
 /*
- * Onime Menu - accent rouge Pinterest (data-domain="menu").
+ * ONIME Stock — vert logo #44D600 (data-domain="menu").
  * GÉNÉRÉ par scripts/build-menu-domain.ts depuis src/lib/brand-palette.ts - NE PAS ÉDITER À LA MAIN.
  * Posé sur <html data-domain="menu">. Spécificité alignée sur design-system/tokens.css (sombre : système + forcé).
  */
 
 :root[data-domain="menu"] {
-  --onime-accent: #E60023;
-  --onime-accent-rgb: 230 0 35;
-  --onime-accent-text: #9E0A1E;
-  --onime-accent-text-rgb: 158 10 30;
-  --onime-accent-strong: #E60023;
-  --onime-accent-strong-rgb: 230 0 35;
-  --onime-accent-strong-hover: #AD081B;
-  --onime-accent-strong-hover-rgb: 173 8 27;
-  --onime-accent-fg: #FFFFFF;
-  --onime-accent-fg-rgb: 255 255 255;
-  --onime-accent-soft: rgba(230, 0, 35, 0.10);
+  --onime-accent: #2E8F00;
+  --onime-accent-rgb: 46 143 0;
+  --onime-accent-text: #1F5C00;
+  --onime-accent-text-rgb: 31 92 0;
+  --onime-accent-strong: #44D600;
+  --onime-accent-strong-rgb: 68 214 0;
+  --onime-accent-strong-hover: #3BC400;
+  --onime-accent-strong-hover-rgb: 59 196 0;
+  --onime-accent-fg: #0f172a;
+  --onime-accent-fg-rgb: 15 23 42;
+  --onime-accent-soft: rgba(68, 214, 0, 0.14);
   --accent: var(--onime-accent);
   --accent-text: var(--onime-accent-text);
   --accent-strong: var(--onime-accent-strong);
   --accent-strong-hover: var(--onime-accent-strong-hover);
   --accent-fg: var(--onime-accent-fg);
   --accent-soft: var(--onime-accent-soft);
-  /* Onime Menu : le rouge Pinterest EST la marque → on remappe aussi « primary » (CTA, sélection, liens) */
-  --onime-primary: #E60023;
-  --onime-primary-rgb: 230 0 35;
-  --onime-primary-hover: #AD081B;
-  --onime-primary-hover-rgb: 173 8 27;
-  --onime-primary-active: #8A0616;
-  --onime-primary-active-rgb: 138 6 22;
-  --onime-primary-text: #9E0A1E;
-  --onime-primary-text-rgb: 158 10 30;
-  --onime-primary-soft: rgba(230, 0, 35, 0.10);
-  --onime-on-primary: #FFFFFF;
-  --onime-on-primary-rgb: 255 255 255;
+  /* Vert ONIME → remappe « primary » (CTA, sélection, liens) */
+  --onime-primary: #44D600;
+  --onime-primary-rgb: 68 214 0;
+  --onime-primary-hover: #3BC400;
+  --onime-primary-hover-rgb: 59 196 0;
+  --onime-primary-active: #32A800;
+  --onime-primary-active-rgb: 50 168 0;
+  --onime-primary-text: #1F5C00;
+  --onime-primary-text-rgb: 31 92 0;
+  --onime-primary-soft: rgba(68, 214, 0, 0.14);
+  --onime-on-primary: #0f172a;
+  --onime-on-primary-rgb: 15 23 42;
   --primary: var(--onime-primary);
   --primary-deep: var(--onime-primary-hover);
   --primary-active: var(--onime-primary-active);
@@ -43,35 +43,35 @@
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]):not(.light)[data-domain="menu"] {
-  --onime-accent: #FF385F;
-  --onime-accent-rgb: 255 56 95;
-  --onime-accent-text: #FF8A9E;
-  --onime-accent-text-rgb: 255 138 158;
-  --onime-accent-strong: #E60023;
-  --onime-accent-strong-rgb: 230 0 35;
-  --onime-accent-strong-hover: #AD081B;
-  --onime-accent-strong-hover-rgb: 173 8 27;
-  --onime-accent-fg: #FFFFFF;
-  --onime-accent-fg-rgb: 255 255 255;
-  --onime-accent-soft: rgba(230, 0, 35, 0.18);
+  --onime-accent: #5AE818;
+  --onime-accent-rgb: 90 232 24;
+  --onime-accent-text: #8AFF52;
+  --onime-accent-text-rgb: 138 255 82;
+  --onime-accent-strong: #44D600;
+  --onime-accent-strong-rgb: 68 214 0;
+  --onime-accent-strong-hover: #3BC400;
+  --onime-accent-strong-hover-rgb: 59 196 0;
+  --onime-accent-fg: #0f172a;
+  --onime-accent-fg-rgb: 15 23 42;
+  --onime-accent-soft: rgba(68, 214, 0, 0.18);
   --accent: var(--onime-accent);
   --accent-text: var(--onime-accent-text);
   --accent-strong: var(--onime-accent-strong);
   --accent-strong-hover: var(--onime-accent-strong-hover);
   --accent-fg: var(--onime-accent-fg);
   --accent-soft: var(--onime-accent-soft);
-  /* Onime Menu : le rouge Pinterest EST la marque → on remappe aussi « primary » (CTA, sélection, liens) */
-  --onime-primary: #E60023;
-  --onime-primary-rgb: 230 0 35;
-  --onime-primary-hover: #AD081B;
-  --onime-primary-hover-rgb: 173 8 27;
-  --onime-primary-active: #8A0616;
-  --onime-primary-active-rgb: 138 6 22;
-  --onime-primary-text: #FF8A9E;
-  --onime-primary-text-rgb: 255 138 158;
-  --onime-primary-soft: rgba(230, 0, 35, 0.18);
-  --onime-on-primary: #FFFFFF;
-  --onime-on-primary-rgb: 255 255 255;
+  /* Vert ONIME → remappe « primary » (CTA, sélection, liens) */
+  --onime-primary: #44D600;
+  --onime-primary-rgb: 68 214 0;
+  --onime-primary-hover: #3BC400;
+  --onime-primary-hover-rgb: 59 196 0;
+  --onime-primary-active: #32A800;
+  --onime-primary-active-rgb: 50 168 0;
+  --onime-primary-text: #8AFF52;
+  --onime-primary-text-rgb: 138 255 82;
+  --onime-primary-soft: rgba(68, 214, 0, 0.18);
+  --onime-on-primary: #0f172a;
+  --onime-on-primary-rgb: 15 23 42;
   --primary: var(--onime-primary);
   --primary-deep: var(--onime-primary-hover);
   --primary-active: var(--onime-primary-active);
@@ -82,35 +82,35 @@
 
 :root[data-theme="dark"][data-domain="menu"],
 :root.dark[data-domain="menu"] {
-  --onime-accent: #FF385F;
-  --onime-accent-rgb: 255 56 95;
-  --onime-accent-text: #FF8A9E;
-  --onime-accent-text-rgb: 255 138 158;
-  --onime-accent-strong: #E60023;
-  --onime-accent-strong-rgb: 230 0 35;
-  --onime-accent-strong-hover: #AD081B;
-  --onime-accent-strong-hover-rgb: 173 8 27;
-  --onime-accent-fg: #FFFFFF;
-  --onime-accent-fg-rgb: 255 255 255;
-  --onime-accent-soft: rgba(230, 0, 35, 0.18);
+  --onime-accent: #5AE818;
+  --onime-accent-rgb: 90 232 24;
+  --onime-accent-text: #8AFF52;
+  --onime-accent-text-rgb: 138 255 82;
+  --onime-accent-strong: #44D600;
+  --onime-accent-strong-rgb: 68 214 0;
+  --onime-accent-strong-hover: #3BC400;
+  --onime-accent-strong-hover-rgb: 59 196 0;
+  --onime-accent-fg: #0f172a;
+  --onime-accent-fg-rgb: 15 23 42;
+  --onime-accent-soft: rgba(68, 214, 0, 0.18);
   --accent: var(--onime-accent);
   --accent-text: var(--onime-accent-text);
   --accent-strong: var(--onime-accent-strong);
   --accent-strong-hover: var(--onime-accent-strong-hover);
   --accent-fg: var(--onime-accent-fg);
   --accent-soft: var(--onime-accent-soft);
-  /* Onime Menu : le rouge Pinterest EST la marque → on remappe aussi « primary » (CTA, sélection, liens) */
-  --onime-primary: #E60023;
-  --onime-primary-rgb: 230 0 35;
-  --onime-primary-hover: #AD081B;
-  --onime-primary-hover-rgb: 173 8 27;
-  --onime-primary-active: #8A0616;
-  --onime-primary-active-rgb: 138 6 22;
-  --onime-primary-text: #FF8A9E;
-  --onime-primary-text-rgb: 255 138 158;
-  --onime-primary-soft: rgba(230, 0, 35, 0.18);
-  --onime-on-primary: #FFFFFF;
-  --onime-on-primary-rgb: 255 255 255;
+  /* Vert ONIME → remappe « primary » (CTA, sélection, liens) */
+  --onime-primary: #44D600;
+  --onime-primary-rgb: 68 214 0;
+  --onime-primary-hover: #3BC400;
+  --onime-primary-hover-rgb: 59 196 0;
+  --onime-primary-active: #32A800;
+  --onime-primary-active-rgb: 50 168 0;
+  --onime-primary-text: #8AFF52;
+  --onime-primary-text-rgb: 138 255 82;
+  --onime-primary-soft: rgba(68, 214, 0, 0.18);
+  --onime-on-primary: #0f172a;
+  --onime-on-primary-rgb: 15 23 42;
   --primary: var(--onime-primary);
   --primary-deep: var(--onime-primary-hover);
   --primary-active: var(--onime-primary-active);

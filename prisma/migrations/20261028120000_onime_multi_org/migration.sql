@@ -1,20 +1,31 @@
 -- CreateSchema
 CREATE SCHEMA IF NOT EXISTS "public";
 
--- CreateEnum
-CREATE TYPE "Role" AS ENUM ('OWNER', 'EMPLOYEE', 'SUPERADMIN');
+-- CreateEnum (idempotent — retry / parallel deploy on empty DB)
+DO $$ BEGIN
+  CREATE TYPE "Role" AS ENUM ('OWNER', 'EMPLOYEE', 'SUPERADMIN');
+EXCEPTION WHEN duplicate_object THEN NULL;
+END $$;
 
--- CreateEnum
-CREATE TYPE "PaymentMethod" AS ENUM ('MANUAL', 'FEDAPAY', 'PAYDUNYA');
+DO $$ BEGIN
+  CREATE TYPE "PaymentMethod" AS ENUM ('MANUAL', 'FEDAPAY', 'PAYDUNYA');
+EXCEPTION WHEN duplicate_object THEN NULL;
+END $$;
 
--- CreateEnum
-CREATE TYPE "PaymentStatus" AS ENUM ('PENDING', 'PAID', 'FAILED');
+DO $$ BEGIN
+  CREATE TYPE "PaymentStatus" AS ENUM ('PENDING', 'PAID', 'FAILED');
+EXCEPTION WHEN duplicate_object THEN NULL;
+END $$;
 
--- CreateEnum
-CREATE TYPE "PurchaseStatus" AS ENUM ('DRAFT', 'RECEIVED', 'CANCELLED');
+DO $$ BEGIN
+  CREATE TYPE "PurchaseStatus" AS ENUM ('DRAFT', 'RECEIVED', 'CANCELLED');
+EXCEPTION WHEN duplicate_object THEN NULL;
+END $$;
 
--- CreateEnum
-CREATE TYPE "SaleStatus" AS ENUM ('DRAFT', 'CONFIRMED', 'CANCELLED');
+DO $$ BEGIN
+  CREATE TYPE "SaleStatus" AS ENUM ('DRAFT', 'CONFIRMED', 'CANCELLED');
+EXCEPTION WHEN duplicate_object THEN NULL;
+END $$;
 
 -- CreateTable
 CREATE TABLE "User" (

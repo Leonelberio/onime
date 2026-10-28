@@ -15,7 +15,7 @@ function flatten(rgba: string, bg: string): string {
 describe.each([
   ["clair", brandLight, surfacesLight],
   ["sombre", brandDark, surfacesDark],
-] as const)("palette rouge rosé - thème %s (WCAG AA)", (_name, B, S) => {
+] as const)("palette vert ONIME - thème %s (WCAG AA)", (_name, B, S) => {
   it("texte sur bouton (fg sur strong / hover / active) ≥ 4.5:1", () => {
     for (const k of ["strong", "hover", "active"] as const) expect(contrastRatio(B.fg, B[k])).toBeGreaterThanOrEqual(4.5);
   });

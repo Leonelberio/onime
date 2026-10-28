@@ -11,7 +11,7 @@ import { emptyToNull, fail, guarded, parseForm, requireWritable, success, type A
 const orgSchema = z.object({
   name: z.string().trim().min(2, "Nom requis").max(80),
   description: z.string().trim().max(300).optional(),
-  brandColor: z.string().trim().regex(/^#[0-9a-fA-F]{6}$/, "Couleur invalide (ex. #2563EB)"),
+  brandColor: z.string().trim().regex(/^#[0-9a-fA-F]{6}$/, "Couleur invalide (ex. #44D600)"),
   currency: z.string().trim().toUpperCase().refine(isCompanyCurrency, "Devise non supportée"),
   logoUrlLight: z.string().trim().max(500).optional(),
   logoUrlDark: z.string().trim().max(500).optional(),

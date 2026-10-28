@@ -24,7 +24,7 @@ const vars = (b: BrandTheme) => `  --onime-accent: ${b.base};
   --accent-strong-hover: var(--onime-accent-strong-hover);
   --accent-fg: var(--onime-accent-fg);
   --accent-soft: var(--onime-accent-soft);
-  /* Onime Menu : le rouge Pinterest EST la marque → on remappe aussi « primary » (CTA, sélection, liens) */
+  /* Vert ONIME → remappe « primary » (CTA, sélection, liens) */
   --onime-primary: ${b.strong};
   --onime-primary-rgb: ${rgb(b.strong)};
   --onime-primary-hover: ${b.hover};
@@ -43,7 +43,7 @@ const vars = (b: BrandTheme) => `  --onime-accent: ${b.base};
   --primary-muted: var(--onime-primary-text);`;
 
 const css = `/*
- * Onime Menu - accent rouge Pinterest (data-domain="menu").
+ * ONIME Stock — vert logo #44D600 (data-domain="menu").
  * GÉNÉRÉ par scripts/build-menu-domain.ts depuis src/lib/brand-palette.ts - NE PAS ÉDITER À LA MAIN.
  * Posé sur <html data-domain="menu">. Spécificité alignée sur design-system/tokens.css (sombre : système + forcé).
  */

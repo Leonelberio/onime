@@ -1,8 +1,10 @@
 /**
- * Palette rouge Pinterest (#E60023) - source de vérité marque Onime Menu.
+ * Vert néon ONIME (#44D600) — source de vérité pour le thème produit.
  * `scripts/build-menu-domain.ts` génère src/styles/menu-domain.css ; `brand-palette.test.ts`
- * (et `npm run check:contrast`) vérifient le contraste WCAG AA de chaque paire.
+ * vérifie le contraste WCAG AA de chaque paire.
  */
+import { ONIME_BRAND_COLOR } from "./branding";
+
 export interface BrandTheme {
   /** Couleur de marque (logo, icônes, bordures UI ≥ 3:1). */
   base: string;
@@ -18,29 +20,32 @@ export interface BrandTheme {
   fg: string;
 }
 
-export const BRAND_NAME = "Rouge Pinterest (Onime Menu)";
+export const BRAND_NAME = "Vert ONIME";
 
-/** Rouge de marque Pinterest. */
-export const PINTEREST_RED = "#E60023";
+/** Vert du logo. */
+export const ONIME_GREEN = ONIME_BRAND_COLOR;
+
+/** Vert légèrement assombri pour texte et icônes sur fond clair (AA). */
+const GREEN_UI_LIGHT = "#2E8F00";
 
 export const brandLight: BrandTheme = {
-  base: PINTEREST_RED,
-  strong: PINTEREST_RED,
-  hover: "#AD081B",
-  active: "#8A0616",
-  text: "#9E0A1E",
-  soft: "rgba(230, 0, 35, 0.10)",
-  fg: "#FFFFFF",
+  base: GREEN_UI_LIGHT,
+  strong: ONIME_GREEN,
+  hover: "#3BC400",
+  active: "#32A800",
+  text: "#1F5C00",
+  soft: "rgba(68, 214, 0, 0.14)",
+  fg: "#0f172a",
 };
 
 export const brandDark: BrandTheme = {
-  base: "#FF385F",
-  strong: PINTEREST_RED,
-  hover: "#AD081B",
-  active: "#8A0616",
-  text: "#FF8A9E",
-  soft: "rgba(230, 0, 35, 0.18)",
-  fg: "#FFFFFF",
+  base: "#5AE818",
+  strong: ONIME_GREEN,
+  hover: "#3BC400",
+  active: "#32A800",
+  text: "#8AFF52",
+  soft: "rgba(68, 214, 0, 0.18)",
+  fg: "#0f172a",
 };
 
 /** Surfaces de la charte ONIME (design-system/tokens.mjs) sur lesquelles on contrôle le contraste. */
